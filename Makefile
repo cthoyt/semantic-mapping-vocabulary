@@ -1,4 +1,4 @@
-ONTBASE=http://w3id.org/semapv
+ONTBASE=https://w3id.org/semapv
 ROBOT=robot -vvv
 DATE ?= $(shell date +%Y-%m-%d)
 
