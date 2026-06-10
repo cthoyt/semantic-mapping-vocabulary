@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://w3id.org/semapv/vocab/semapv.owl#"
-     xml:base="http://w3id.org/semapv/vocab/semapv.owl"
+<rdf:RDF xmlns="https://w3id.org/semapv/vocab/semapv.owl#"
+     xml:base="https://w3id.org/semapv/vocab/semapv.owl"
      xmlns:IAO="http://purl.obolibrary.org/obo/IAO_"
      xmlns:doi="https://doi.org/"
      xmlns:obo="http://purl.obolibrary.org/obo/"
@@ -16,8 +16,8 @@
      xmlns:dcterms="http://purl.org/dc/terms/"
      xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#"
      xmlns:NCBITaxon="http://purl.obolibrary.org/obo/NCBITaxon_">
-    <owl:Ontology rdf:about="http://w3id.org/semapv/vocab/semapv.owl">
-        <owl:versionIRI rdf:resource="http://w3id.org/semapv/vocab/releases/2026-06-10/semapv.owl"/>
+    <owl:Ontology rdf:about="https://w3id.org/semapv/vocab/semapv.owl">
+        <owl:versionIRI rdf:resource="https://w3id.org/semapv/vocab/releases/2026-06-10/semapv.owl"/>
         <obo:IAO_0000700 rdf:resource="https://w3id.org/semapv/vocab/Mapping"/>
         <obo:IAO_0000700 rdf:resource="https://w3id.org/semapv/vocab/MappingActivity"/>
         <obo:IAO_0000700 rdf:resource="https://w3id.org/semapv/vocab/SimilarityMeasure"/>

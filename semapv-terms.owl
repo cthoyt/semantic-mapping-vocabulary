@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://w3id.org/semapv/vocab/semapv-terms.owl#"
-     xml:base="http://w3id.org/semapv/vocab/semapv-terms.owl"
+<rdf:RDF xmlns="https://w3id.org/semapv/vocab/semapv-terms.owl#"
+     xml:base="https://w3id.org/semapv/vocab/semapv-terms.owl"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
@@ -8,8 +8,8 @@
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:skos="http://www.w3.org/2004/02/skos/core#"
      xmlns:terms="http://purl.org/dc/terms/">
-    <owl:Ontology rdf:about="http://w3id.org/semapv/vocab/semapv-terms.owl">
-        <owl:versionIRI rdf:resource="http://w3id.org/semapv/vocab/releases/2026-06-10/semapv-terms.owl"/>
+    <owl:Ontology rdf:about="https://w3id.org/semapv/vocab/semapv-terms.owl">
+        <owl:versionIRI rdf:resource="https://w3id.org/semapv/vocab/releases/2026-06-10/semapv-terms.owl"/>
     </owl:Ontology>
     
 
