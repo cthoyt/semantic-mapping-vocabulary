@@ -21,7 +21,9 @@ def main(fix: bool) -> None:
     fail = False
     for path in HERE.glob("*.tsv"):
         original = path.read_text()
-        actual = pd.read_csv(path, sep="\t")
+        actual = pd.read_csv(path, sep="\t", dtype=str)
+        for column in actual.columns:
+            actual[column] = actual[column].map(str.strip, na_action="ignore")
         if fix:
             actual.to_csv(path, index=False, sep="\t")
         corrected = actual.to_csv(sep="\t", index=False)
