@@ -11,13 +11,15 @@
      xmlns:prov="http://www.w3.org/ns/prov#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:fabio="http://purl.org/spar/fabio/"
      xmlns:orcid="https://orcid.org/"
      xmlns:semapv="https://w3id.org/semapv/vocab/"
      xmlns:dcterms="http://purl.org/dc/terms/"
      xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#"
      xmlns:NCBITaxon="http://purl.obolibrary.org/obo/NCBITaxon_">
     <owl:Ontology rdf:about="http://w3id.org/semapv/vocab/semapv.owl">
-        <owl:versionIRI rdf:resource="http://w3id.org/semapv/vocab/releases/2026-06-10/semapv.owl"/>
+        <owl:versionIRI rdf:resource="http://w3id.org/semapv/vocab/releases/2026-09-14/semapv.owl"/>
+        <obo:IAO_0000700 rdf:resource="https://w3id.org/semapv/vocab/InferenceRule"/>
         <obo:IAO_0000700 rdf:resource="https://w3id.org/semapv/vocab/Mapping"/>
         <obo:IAO_0000700 rdf:resource="https://w3id.org/semapv/vocab/MappingActivity"/>
         <obo:IAO_0000700 rdf:resource="https://w3id.org/semapv/vocab/SimilarityMeasure"/>
@@ -45,6 +47,7 @@
     <!-- http://purl.obolibrary.org/obo/IAO_0000700 -->
 
     <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000700">
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/iao.owl"/>
         <skos:prefLabel>has ontology root term</skos:prefLabel>
     </owl:AnnotationProperty>
     
@@ -271,6 +274,14 @@
     
 
 
+    <!-- http://purl.org/spar/fabio/JournalArticle -->
+
+    <owl:Class rdf:about="http://purl.org/spar/fabio/JournalArticle">
+        <skos:prefLabel>journal article</skos:prefLabel>
+    </owl:Class>
+    
+
+
     <!-- https://w3id.org/semapv/vocab/AgentBasedMatching -->
 
     <owl:Class rdf:about="https://w3id.org/semapv/vocab/AgentBasedMatching">
@@ -338,6 +349,18 @@
     
 
 
+    <!-- https://w3id.org/semapv/vocab/BroadMatchTransitivityRule -->
+
+    <owl:Class rdf:about="https://w3id.org/semapv/vocab/BroadMatchTransitivityRule">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/semapv/vocab/TransitivityRule"/>
+        <dcterms:source rdf:resource="https://doi.org/10.1093/bioinformatics/btaf542"/>
+        <skos:definition>An inference rule over the transitivity of skos:broadMatch such that (e₁, skos:broadMatch, e₂) and (e₂, skos:broadMatch, e₃) infer (e₁, skos:broadMatch, e₃)</skos:definition>
+        <skos:example>Because skos:broadMatch is transitive, (kim.hochschulfaechersystematik:n032, skos:broadMatch, kim.hochschulfaechersystematik:n40) and (kim.hochschulfaechersystematik:n40, skos:broadMatch, kim.hochschulfaechersystematik:n4) infers (kim.hochschulfaechersystematik:n032, skos:broadMatch, kim.hochschulfaechersystematik:n4)</skos:example>
+        <skos:prefLabel>broad match transitivity rule</skos:prefLabel>
+    </owl:Class>
+    
+
+
     <!-- https://w3id.org/semapv/vocab/CardinalityFiltering -->
 
     <owl:Class rdf:about="https://w3id.org/semapv/vocab/CardinalityFiltering">
@@ -355,6 +378,17 @@
         <skos:definition>A normalization technique converting each alphabetic character in a string to their lower case counterpart.</skos:definition>
         <skos:example>The string &apos;Ontology&apos; is normalised to &apos;ontology&apos; (lower case).</skos:example>
         <skos:prefLabel>case normalization</skos:prefLabel>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/semapv/vocab/ChainingRule -->
+
+    <owl:Class rdf:about="https://w3id.org/semapv/vocab/ChainingRule">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/semapv/vocab/InferenceRule"/>
+        <dcterms:source rdf:resource="https://doi.org/10.1093/bioinformatics/btaf542"/>
+        <skos:definition>An inference rule for mapping chaining, under which two or more mappings are chained to produce a new mapping based on their network structure. For example, a simple chaining rule takes mappings (e₁, p₁, e₂) and (e₂, p₂, e₃) and produces (e₁, p₃, e₃). Mappings produced under this rule should be assigned the justification semapv:MappingChaining.</skos:definition>
+        <skos:prefLabel>mapping chaining rule</skos:prefLabel>
     </owl:Class>
     
 
@@ -432,6 +466,52 @@
     
 
 
+    <!-- https://w3id.org/semapv/vocab/EquivalentClassTransitivityRule -->
+
+    <owl:Class rdf:about="https://w3id.org/semapv/vocab/EquivalentClassTransitivityRule">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/semapv/vocab/TransitivityRule"/>
+        <dcterms:source rdf:resource="https://doi.org/10.1093/bioinformatics/btaf542"/>
+        <skos:definition>An inference rule over the transitivity of owl:equivalentClass such that (e₁, owl:equivalentClass, e₂) and (e₂, owl:equivalentClass, e₃) infer (e₁, owl:equivalentClass, e₃)</skos:definition>
+        <skos:prefLabel>equivalent class transitivity rule</skos:prefLabel>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/semapv/vocab/EquivalentIndividualTransitivityRule -->
+
+    <owl:Class rdf:about="https://w3id.org/semapv/vocab/EquivalentIndividualTransitivityRule">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/semapv/vocab/TransitivityRule"/>
+        <dcterms:source rdf:resource="https://doi.org/10.1093/bioinformatics/btaf542"/>
+        <skos:definition>An inference rule over the transitivity of owl:sameAs such that (e₁, owl:sameAs, e₂) and (e₂, owl:sameAs, e₃) infer (e₁, owl:sameAs, e₃)</skos:definition>
+        <skos:example>Because owl:sameAs is transitive, ror:04xfq0f34 owl:sameAs wikidata:Q273263 and wikidata:Q273263 owl:sameAs ringgold:9165 infers ror:04xfq0f34 owl:sameAs ringgold:9165</skos:example>
+        <skos:prefLabel>equivalent individual transitivity rule</skos:prefLabel>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/semapv/vocab/EquivalentPropertyTransitivityRule -->
+
+    <owl:Class rdf:about="https://w3id.org/semapv/vocab/EquivalentPropertyTransitivityRule">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/semapv/vocab/TransitivityRule"/>
+        <dcterms:source rdf:resource="https://doi.org/10.1093/bioinformatics/btaf542"/>
+        <skos:definition>An inference rule over the transitivity of owl:equivalentProperty such that (e₁, owl:equivalentProperty, e₂) and (e₂, owl:equivalentProperty, e₃) infer (e₁, owl:equivalentProperty, e₃)</skos:definition>
+        <skos:prefLabel>equivalent property transitivity rule</skos:prefLabel>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/semapv/vocab/ExactMatchTransitivityRule -->
+
+    <owl:Class rdf:about="https://w3id.org/semapv/vocab/ExactMatchTransitivityRule">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/semapv/vocab/TransitivityRule"/>
+        <dcterms:source rdf:resource="https://doi.org/10.1093/bioinformatics/btaf542"/>
+        <skos:definition>An inference rule over the transitivity of skos:exactMatch such that (e₁, skos:exactMatch, e₂) and (e₂, skos:exactMatch, e₃) infer (e₁, skos:exactMatch, e₃)</skos:definition>
+        <skos:example>Because skos:exactMatch is transitive, mesh:C000089 skos:exactMatch CHEBI:28646 and CHEBI:28646 skos:exactMatch CAS:645-92-1 infers mesh:C000089 skos:exactMatch CAS:645-92-1</skos:example>
+        <skos:prefLabel>exact match transitivity rule</skos:prefLabel>
+    </owl:Class>
+    
+
+
     <!-- https://w3id.org/semapv/vocab/GraphRepresentationLearningBasedMatching -->
 
     <owl:Class rdf:about="https://w3id.org/semapv/vocab/GraphRepresentationLearningBasedMatching">
@@ -456,6 +536,17 @@
     
 
 
+    <!-- https://w3id.org/semapv/vocab/InferenceRule -->
+
+    <owl:Class rdf:about="https://w3id.org/semapv/vocab/InferenceRule">
+        <dcterms:source rdf:resource="https://doi.org/10.1093/bioinformatics/btaf542"/>
+        <rdfs:comment>The mapping inference rules were originally conceived as part of the design document for the Semantic Mapping Reasoner and Assembler (SeMRA; https://github.com/biopragmatics/semra), then adapted into the SSSOM documentation (https://mapping-commons.github.io/sssom/chaining-rules/), then encoded formally in SEMAPV</rdfs:comment>
+        <skos:definition>An rule for inferring a new semantic mapping from two or more existing mappings</skos:definition>
+        <skos:prefLabel>mapping inference rule</skos:prefLabel>
+    </owl:Class>
+    
+
+
     <!-- https://w3id.org/semapv/vocab/InstanceBasedMatching -->
 
     <owl:Class rdf:about="https://w3id.org/semapv/vocab/InstanceBasedMatching">
@@ -464,6 +555,18 @@
         <skos:definition>A matching process based on individual representations (or instances).</skos:definition>
         <skos:example>A match between a subject A and an object B was established because they share the same instances.</skos:example>
         <skos:prefLabel>instance-based matching process</skos:prefLabel>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/semapv/vocab/InversionRule -->
+
+    <owl:Class rdf:about="https://w3id.org/semapv/vocab/InversionRule">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/semapv/vocab/InferenceRule"/>
+        <dcterms:source rdf:resource="https://doi.org/10.1093/bioinformatics/btaf542"/>
+        <skos:definition>An inference rule for mapping inversions, under which a mapping (s, p, o) is inverted (o, p&apos;, s) if and only if p and p&apos; are inverse predicates, such as skos:broadMatch and skos:narrowMatch. Some predicates such as skos:exactMatch are their own inverses. Mappings produced under this rule should be assigned the justification semapv:MappingInversion.</skos:definition>
+        <skos:example>Because skos:exactMatch is its own inverse predicate, mesh:C000089 skos:exactMatch CHEBI:28646 infers CHEBI:28646 skos:exactMatch. mesh:C000089</skos:example>
+        <skos:prefLabel>mapping inversion rule</skos:prefLabel>
     </owl:Class>
     
 
@@ -682,6 +785,29 @@
     
 
 
+    <!-- https://w3id.org/semapv/vocab/MutationRule -->
+
+    <owl:Class rdf:about="https://w3id.org/semapv/vocab/MutationRule">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/semapv/vocab/InferenceRule"/>
+        <dcterms:source rdf:resource="https://doi.org/10.1093/bioinformatics/btaf542"/>
+        <skos:definition>An inference rule under which a mapping (s, p, o) is mutated (s, p&apos;, o). For example, owl:equivalentClass or owl:equivalentProperty can always be weakened to skos:exactMatch. In some circumstances, oboInOwl:hasDbXref can be strengthened to skos:exactMatch. Mappings produced under this rule should be assigned the justification semapv:BackgroundKnowledgeBasedMatching.</skos:definition>
+        <skos:prefLabel>mapping mutation rule</skos:prefLabel>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/semapv/vocab/NarrowMatchTransitivityRule -->
+
+    <owl:Class rdf:about="https://w3id.org/semapv/vocab/NarrowMatchTransitivityRule">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/semapv/vocab/TransitivityRule"/>
+        <dcterms:source rdf:resource="https://doi.org/10.1093/bioinformatics/btaf542"/>
+        <skos:definition>An inference rule over the transitivity of skos:narrowMatch such that (e₁, skos:narrowMatch, e₂) and (e₂, skos:narrowMatch, e₃) infer (e₁, skos:narrowMatch, e₃)</skos:definition>
+        <skos:example>Because skos:narrowMatch is transitive, (kim.hochschulfaechersystematik:n4, skos:narrowMatch, kim.hochschulfaechersystematik:n40) and (kim.hochschulfaechersystematik:n40, skos:narrowMatch, kim.hochschulfaechersystematik:n032) infers (kim.hochschulfaechersystematik:n4, skos:narrowMatch, kim.hochschulfaechersystematik:n032)</skos:example>
+        <skos:prefLabel>narrow match transitivity rule</skos:prefLabel>
+    </owl:Class>
+    
+
+
     <!-- https://w3id.org/semapv/vocab/Normalization -->
 
     <owl:Class rdf:about="https://w3id.org/semapv/vocab/Normalization">
@@ -813,6 +939,30 @@
     
 
 
+    <!-- https://w3id.org/semapv/vocab/SubClassOfTransitivityRule -->
+
+    <owl:Class rdf:about="https://w3id.org/semapv/vocab/SubClassOfTransitivityRule">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/semapv/vocab/TransitivityRule"/>
+        <dcterms:source rdf:resource="https://doi.org/10.1093/bioinformatics/btaf542"/>
+        <skos:definition>An inference rule over the transitivity of rdfs:subClassOf such that (e₁, rdfs:subClassOf , e₂) and (e₂, rdfs:subClassOf , e₃) infer (e₁, rdfs:subClassOf , e₃)</skos:definition>
+        <skos:example>Because rdfs:subClassOf is transitive (DOID:2934, rdfs:subClassOf, DOID:934) and (DOID:934, rdfs:subClassOf, DOID:0050117) infers (DOID:2934, rdfs:subClassOf, DOID:0050117)</skos:example>
+        <skos:prefLabel>subclass transitivity rule</skos:prefLabel>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/semapv/vocab/SubPropertyOfTransitivityRule -->
+
+    <owl:Class rdf:about="https://w3id.org/semapv/vocab/SubPropertyOfTransitivityRule">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/semapv/vocab/TransitivityRule"/>
+        <dcterms:source rdf:resource="https://doi.org/10.1093/bioinformatics/btaf542"/>
+        <skos:definition>An inference rule over the transitivity of rdfs:subPropertyOf such that (e₁, rdfs:subPropertyOf , e₂) and (e₂, rdfs:subPropertyOf , e₃) infer (e₁, rdfs:subPropertyOf, e₃)</skos:definition>
+        <skos:example>Because rdfs:subPropertyOf is transitive, (RO:0000092, rdfs:subPropertyOf, RO:0000052) and (RO:0000052, rdfs:subClassOf, RO:0002314) infers (RO:0000092, rdfs:subPropertyOf ,RO:0002314)</skos:example>
+        <skos:prefLabel>subproperty transitivity rule</skos:prefLabel>
+    </owl:Class>
+    
+
+
     <!-- https://w3id.org/semapv/vocab/SubstringSimilarity -->
 
     <owl:Class rdf:about="https://w3id.org/semapv/vocab/SubstringSimilarity">
@@ -886,6 +1036,17 @@
     
 
 
+    <!-- https://w3id.org/semapv/vocab/TransitivityRule -->
+
+    <owl:Class rdf:about="https://w3id.org/semapv/vocab/TransitivityRule">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/semapv/vocab/ChainingRule"/>
+        <dcterms:source rdf:resource="https://doi.org/10.1093/bioinformatics/btaf542"/>
+        <skos:definition>An inference rule over the transitivity of a predicate p such that (e₁, p₁, e₂) and (e₂, p₂, e₃) infer (e₁, p₃, e₃). A common transitivity rule is when p₁=p₂=p₃=skos:exactMatch.</skos:definition>
+        <skos:prefLabel>transitivity rule</skos:prefLabel>
+    </owl:Class>
+    
+
+
     <!-- https://w3id.org/semapv/vocab/UnspecifiedMatching -->
 
     <owl:Class rdf:about="https://w3id.org/semapv/vocab/UnspecifiedMatching">
@@ -915,6 +1076,15 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- https://doi.org/10.1093/bioinformatics/btaf542 -->
+
+    <owl:NamedIndividual rdf:about="https://doi.org/10.1093/bioinformatics/btaf542">
+        <rdf:type rdf:resource="http://purl.org/spar/fabio/JournalArticle"/>
+        <skos:prefLabel>Assembly and reasoning over semantic mappings at scale for biomedical data integration</skos:prefLabel>
+    </owl:NamedIndividual>
     
 
 

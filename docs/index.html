@@ -54,19 +54,21 @@
         dd {
             margin-bottom: 10px;
             padding-top: 7px;
+            line-height: 1.6em;
         }
 
-        #metadata ul,
-        #classes ul {
+        ul.pylodelitlist {
             list-style-type: none;
+            margin-left: -40px;
         }
 
         #metadata ul li,
         #classes ul li {
-            margin-left: -40px;
+            margin-bottom: 10px;
         }
+
         #metadata dd p {
-          margin: 0;
+          margin: 0 0 1em 0;
         }
 
         ul.hlist {
@@ -76,12 +78,19 @@
             background-color: #F4FFFF;
         }
 
-        ul.hierarchy {
-            border: 1px solid navy;
-            padding: 5px 25px 5px 25px;
+        div.hierarchy {
+            margin-bottom: 30px;
             background-color: #F4FFFF;
+            padding: 10px;
         }
 
+        ul.hierarchy {
+            padding: 5px 25px 5px 25px;
+        }
+
+        ul.hierarchy li {
+            margin-top:5px;
+        }
 
         ul.hlist li {
             display: inline;
@@ -133,7 +142,10 @@
             border-bottom: 1px solid navy;
         }
         h4 { font: bold 100% sans-serif }
-        h5 { font: italic 100% sans-serif }
+        h5 {
+            font: italic 100% sans-serif;
+            margin-bottom: 10px;
+        }
         h6 { font: small-caps 100% sans-serif }
 
         body {
@@ -168,7 +180,9 @@
         .sup-p,
         .sup-ni,
         .sup-con,
-        .sup-col {
+        .sup-col,
+        .sup-ns,
+        .sup-ps {
             cursor:help;
         }
 
@@ -208,6 +222,14 @@
             color:darkred;
         }
 
+        .sup-ns {
+            color:lightgreen;
+        }
+
+        .sup-ps {
+            color:lightblue;
+        }
+
         sup {
             margin-left: -3px;
         }
@@ -222,67 +244,139 @@
             text-decoration: none;
         }
 
-#toc {
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 2;
-    height: 100%;
-    overflow-y: auto;
-    padding: 10px;
-    border: solid 1px navy;
-    font-size: small;
-    width: 180px;
-}
-#toc h3 {
-    margin-top: 5px;
-}
+        #toc {
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 2;
+            height: 100%;
+            overflow-y: auto;
+            padding: 10px;
+            border: solid 1px navy;
+            font-size: small;
+            width: 180px;
+        }
+        #toc h3 {
+            margin-top: 5px;
+        }
 
-#toc ul {
-    list-style: none;
-    padding-left: 0;
-}
+        #toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
 
-#toc .first > li {
-    margin-top: 5px;
-}
+        #toc .first > li {
+            margin-top: 5px;
+        }
 
-#toc .second,
-#toc .third {
-    padding-left: 10px;
-}
+        #toc .second,
+        #toc .third {
+            padding-left: 10px;
+        }
 
-#content {
-    width: calc(100% - 150px);
-}
+        .second li {
+            margin-top: 0.5em;
+        }
 
-.hover_property {
-    cursor: help;
-    text-decoration: none;
-    border-bottom: dashed 1px;
-}
+        #content {
+            width: calc(100% - 150px);
+        }
 
-.setclass {
-    list-style-type: none;
-}
+        .hover_property {
+            cursor: help;
+            text-decoration: none;
+            border-bottom: dashed 1px;
+        }
 
-code{
-    word-wrap: break-word;
-  }
-table {
-    table-layout: fixed;
-    width: 100%;
-}
-td {
-    word-wrap: break-word;
-}
-#legend table.entity {
-    width: 25%;
-}
+        .setclass {
+            list-style-type: none;
+        }
+
+        code{
+            word-wrap: break-word;
+          }
+        table {
+            table-layout: fixed;
+            width: 100%;
+        }
+        td {
+            word-wrap: break-word;
+            line-height: 1.6em ;
+        }
+        #legend table.entity {
+            width: 25%;
+        }
+        @media (max-width: 768px) {
+            /* #toc and #pylode are siblings of #content directly under
+               body; flex ordering pulls the ToC (last in the document)
+               to the top of the page */
+            body {
+                display: flex;
+                flex-direction: column;
+                padding: 1em 16px;
+            }
+
+            dd {
+                margin-left: 20px;
+            }
+
+            #pylode {
+                display: none;
+            }
+
+            #content {
+                width: 100%;
+            }
+
+            #toc {
+                order: -1;
+                position: static;
+                width: auto;
+                height: auto;
+                overflow-y: visible;
+            }
+
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            /* long IRIs in link text must be able to break anywhere */
+            a {
+                overflow-wrap: anywhere;
+            }
+
+            /* stack property tables otherwise columns are squeezed */
+            table,
+            thead,
+            tbody,
+            tr,
+            th,
+            td {
+                display: block;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .entity th,
+            .entity td {
+                padding-bottom: 6px;
+            }
+
+            .entity td {
+                padding-bottom: 16px;
+            }
+
+            #legend table.entity {
+                width: 100%;
+            }
+        }
+
 	</style>
     <link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABhklEQVQ4jbWPzStEURjG3yQLirlGKUnKFO45Z+SjmXvnnmthQcpCoVhYmD/AwmJiI3OvZuZc2U3UlKU0/gAslMw9JgvhHxAr2fko7r0jHSsl+TgbTz2Lt5731/MASEiJW9ONml2QyX6rsGalmnT74v8BDf12hxJfpV8d1uwNKUBYszabdFv84L8B9X0rESVmmUup2fme0cVhJWaZHw4NWL1SewEAfDe6H3Dy6Ll456WEJsRZS630MwCAOI20ei5OBpxse5zcBZw8eS4uPpfIuDiCainIg9umBCU0GZzgLZ9Hn31OgoATL+CkLDGB5H1OKj4nFd/FBxUXJ0UZNb4edw/6nLyJXaj5FeCVyPLNIVmYK8TG1IwWb16L1gEACAFV90ftoT8bdOX0EeyY99gxBXZMgRz6qGb1KantAACI0UvE6F5XJqEjpsdURouI0Vt5gGOUkUNnPu7ObGIIMfNaGqDmjDRi9FZldF1lRgYzeqUyeoiY4ag5Iy3RgOYRM8+/M2bG8efsO4hGrpmJseyMAAAAAElFTkSuQmCC" rel="icon" sizes="16x16" type="image/png">
     <link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAC40lEQVRYhe2UT0hUQRzHp6Iss1B3VZKIDbbdfW9mnoi4f3zzjkJQeOgS0SEIb1EWBGGlLLu460zQPQM1unUIIjA6rfpm6ZAhHjoIRVQUFUlEbG+euTsdXG1d3VL3bVD4g+9h+L35fT/8fvN7ADgY9aHY5fpIvK82HO9ysu66wxWOzbkjcekKx0a2ALYA/n2AGi3a6ArFezcidziecQygNhhrcUficjP6PwBqtGijKxy/thnVBePHywYoDsFhl53GV8SEcsTx4usCMLUewTVpc23BNvEzm6Neyf1+KcG2vwqwUjgrOJq2JmHftwmkVBRGTvncFodnbI7vChO/FRznCmHsNM7aHM9Yk7Df5iqsLMw9sMNOK2g+jS4IEz0UJv4iuJZb2RltWnB4UZqH6ioGAgAAGe5vtiZhtzDx7OoRadLmeM7m6IRjhnLMW2Vx1bA5GhAmnhIcz6/xNj4Ujsky8UspwfayjDPjsF2Y6L7N8Vzx/BfP+KPg6LbgSqd8DnfJW2CnbaLhfH5ephpqygJYvQU4Z3P82TLRsDDhUTnmrSq+Y3N0Mg+Xldy/zwEAnLMWZ3pHpNExmfLs/t0dOdVcbT0JeKxUwFP2VljjqiE47Jp53LTXNxhsUZjerTByXWX6VZWRs/4bIQ2ACv+UAomgDzLCISNZxAxZKMhIDjLy1JfsaK+I+eGBUBNk5E2x8RogX/PdcDZUqieWTSh5D6nOVKqfhoycUmlHFFIyu5RXqf7AcQDISCpv/tqbMBqK883RtmpISRoxQyJKPgGn3wNk5NEigDFa6hslqV/Kj+FdBQD0bshIDlKSLlVcoWQo36UhR80BAMB73lulMn0EMpJTqD6qJiOt3mho/8GbkT2BZNgDB/V+RI0fkOrT3kRIVQbaDizJm2hdNbINBxwk5xAj3yEjuV9rZ1iIkgxixkLBA83mz8uCjLwoGwAx0vOnFSy5mtR4VTaAQvVORMnwZgSpzkrV/QmdE2tKe46+MQAAAABJRU5ErkJggg==" rel="icon" sizes="32x32" type="image/png">
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
     <script id="schema.org" type="application/ld+json">
 [
   {
@@ -357,7 +451,7 @@ td {
               <a class="hover_property" href="http://purl.org/dc/terms/contributor" title="An entity responsible for making contributions to the resource. Defined in DCMI Metadata Terms">Contributor</a>
             </dt>
             <dd>
-              <ul>
+              <ul class="pylodelitlist">
                 <li>
                   <span>
                     <a href="https://orcid.org/0000-0002-6095-8718">https://orcid.org/0000-0002-6095-8718</a>
@@ -373,7 +467,7 @@ td {
           </div>
           <div>
             <dt>
-              <a class="hover_property" href="http://purl.org/dc/terms/license" title="A legal document giving official permission to do something with the resource. Defined in DCMI Metadata Terms">License</a>
+              <a class="hover_property" href="http://purl.org/dc/terms/license" title="Recommended practice is to identify the license document with a URI. If this is not possible or feasible, a literal value that identifies the license may be provided. Defined in DCMI Metadata Terms">License</a>
             </dt>
             <dd>
               <a href="https://creativecommons.org/publicdomain/zero/1.0/">https://creativecommons.org/publicdomain/zero/1.0/</a>
@@ -384,7 +478,7 @@ td {
               <a class="hover_property" href="http://www.w3.org/2002/07/owl#versionIRI" title="The property that identifies the version IRI of an ontology. Defined in The OWL 2 Schema vocabulary (OWL 2)">Version Iri</a>
             </dt>
             <dd>
-              <a href="http://w3id.org/semapv/vocab/releases/2026-06-10/semapv.owl">http://w3id.org/semapv/vocab/releases/2026-06-10/semapv.owl</a>
+              <a href="http://w3id.org/semapv/vocab/releases/2026-09-14/semapv.owl">http://w3id.org/semapv/vocab/releases/2026-09-14/semapv.owl</a>
             </dd>
           </div>
           <div>
@@ -393,11 +487,293 @@ td {
             </dt>
             <dd><p>The Semantic Mapping Vocabulary provides and defines terms used for creating and maintaining semantic mappings, in particular mapping metadata.</p></dd>
           </div>
+          <div>
+            <dt>
+              <a class="hover_property" href="http://purl.obolibrary.org/obo/IAO_0000700" title="Ontology annotation property. Relates an ontology to a term that is a designated root term of the ontology. Display tools like OLS can use terms annotated with this property as the starting point for rendering the ontology class hierarchy. There can be more than one root. Defined in None">Has Ontology Root Term</a>
+            </dt>
+            <dd>
+              <ul class="pylodelitlist">
+                <li>
+                  <span>
+                    <a href="https://w3id.org/semapv/vocab/InferenceRule">mapping inference rule</a>
+                    <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <a href="https://w3id.org/semapv/vocab/Mapping">mapping</a>
+                    <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <a href="https://w3id.org/semapv/vocab/MappingActivity">mapping activity</a>
+                    <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <a href="https://w3id.org/semapv/vocab/SimilarityMeasure">similarity measure</a>
+                    <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+                  </span>
+                </li>
+              </ul>
+            </dd>
+          </div>
         </dl>
       </div>
       <div class="section" id="classes">
         <h2>Classes</h2>
-        <div class="property entity" id="human">
+        <h3 id="class-hierarchy">Class Hierarchy</h3>
+        <div class="hierarchy">
+          <ul class="hierarchy">
+            <li>
+              <a href="#NCBITaxon_9606">human</a>
+            </li>
+            <li>
+              <a href="#JournalArticle">journal article</a>
+            </li>
+            <li>
+              <a href="#Mapping">mapping</a>
+            </li>
+            <li>
+              <a href="#MappingActivity">mapping activity</a>
+              <ul class="hierarchy">
+                <li>
+                  <a href="#Blocking">blocking</a>
+                  <ul class="hierarchy">
+                    <li>
+                      <a href="#EmbeddingBasedBlocking">embedding-based blocking</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#MappingReview">mapping review</a>
+                </li>
+                <li>
+                  <a href="#Matching">matching process</a>
+                  <ul class="hierarchy">
+                    <li>
+                      <a href="#AgentBasedMatching">agent-based matching process</a>
+                    </li>
+                    <li>
+                      <a href="#BackgroundKnowledgeBasedMatching">background knowledge-based matching process</a>
+                    </li>
+                    <li>
+                      <a href="#CompositeMatching">composite matching process</a>
+                    </li>
+                    <li>
+                      <a href="#InstanceBasedMatching">instance-based matching process</a>
+                    </li>
+                    <li>
+                      <a href="#LexicalMatching">lexical matching process</a>
+                    </li>
+                    <li>
+                      <a href="#LexicalSimilarityThresholdMatching">lexical similarity threshold-based matching process</a>
+                    </li>
+                    <li>
+                      <a href="#LogicalReasoning">logical reasoning matching process</a>
+                    </li>
+                    <li>
+                      <a href="#MachineLearningBasedMatching">machine learning-based matching process</a>
+                      <ul class="hierarchy">
+                        <li>
+                          <a href="#EmbeddingBasedMatching">embedding-based matching process</a>
+                          <ul class="hierarchy">
+                            <li>
+                              <a href="#GraphRepresentationLearningBasedMatching">graph representation learning-based matching process</a>
+                            </li>
+                            <li>
+                              <a href="#TransformerBasedMatching">transformer-based matching process</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <a href="#LLMBasedMatching">LLM-based matching process</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="#ManualMappingCuration">manual mapping curation</a>
+                    </li>
+                    <li>
+                      <a href="#MappingChaining">mapping chaining-based matching process</a>
+                    </li>
+                    <li>
+                      <a href="#MappingInversion">mapping inversion-based matching process</a>
+                    </li>
+                    <li>
+                      <a href="#SemanticSimilarityThresholdMatching">semantic similarity threshold-based matching process</a>
+                    </li>
+                    <li>
+                      <a href="#StructuralMatching">structural matching process</a>
+                      <ul class="hierarchy">
+                        <li>
+                          <a href="#BoundedPathMatching">bounded path matching</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="#UnspecifiedMatching">unspecified matching process</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#MatchingPostProcessing">matching process post-processing</a>
+                  <ul class="hierarchy">
+                    <li>
+                      <a href="#CardinalityFiltering">cardinality filtering</a>
+                    </li>
+                    <li>
+                      <a href="#LogicalConsistencyFiltering">logical consistency filtering</a>
+                    </li>
+                    <li>
+                      <a href="#StableMarriageFiltering">stable marriage filtering</a>
+                    </li>
+                    <li>
+                      <a href="#ThresholdFiltering">threshold filtering</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#MatchingPreprocessing">matching process pre-processing</a>
+                  <ul class="hierarchy">
+                    <li>
+                      <a href="#Normalization">normalization</a>
+                      <ul class="hierarchy">
+                        <li>
+                          <a href="#BlankNormalisation">blank normalisation</a>
+                        </li>
+                        <li>
+                          <a href="#CaseNormalization">case normalization</a>
+                        </li>
+                        <li>
+                          <a href="#DiacriticsSuppression">diacritics suppression</a>
+                        </li>
+                        <li>
+                          <a href="#DigitSuppression">digit suppression</a>
+                        </li>
+                        <li>
+                          <a href="#Lemmatization">lemmatization</a>
+                        </li>
+                        <li>
+                          <a href="#LinkStripping">link stripping</a>
+                        </li>
+                        <li>
+                          <a href="#PunctuationElemination">punctuation elimination</a>
+                        </li>
+                        <li>
+                          <a href="#RegexRemoval">regex removal</a>
+                        </li>
+                        <li>
+                          <a href="#RegexReplacement">regex replacement</a>
+                        </li>
+                        <li>
+                          <a href="#Stemming">stemming</a>
+                        </li>
+                        <li>
+                          <a href="#StopWordRemoval">stop-word removal</a>
+                        </li>
+                        <li>
+                          <a href="#TermExtraction">term extraction</a>
+                        </li>
+                        <li>
+                          <a href="#Tokenization">tokenization</a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#InferenceRule">mapping inference rule</a>
+              <ul class="hierarchy">
+                <li>
+                  <a href="#ChainingRule">mapping chaining rule</a>
+                  <ul class="hierarchy">
+                    <li>
+                      <a href="#TransitivityRule">transitivity rule</a>
+                      <ul class="hierarchy">
+                        <li>
+                          <a href="#BroadMatchTransitivityRule">broad match transitivity rule</a>
+                        </li>
+                        <li>
+                          <a href="#EquivalentClassTransitivityRule">equivalent class transitivity rule</a>
+                        </li>
+                        <li>
+                          <a href="#EquivalentIndividualTransitivityRule">equivalent individual transitivity rule</a>
+                        </li>
+                        <li>
+                          <a href="#EquivalentPropertyTransitivityRule">equivalent property transitivity rule</a>
+                        </li>
+                        <li>
+                          <a href="#ExactMatchTransitivityRule">exact match transitivity rule</a>
+                        </li>
+                        <li>
+                          <a href="#NarrowMatchTransitivityRule">narrow match transitivity rule</a>
+                        </li>
+                        <li>
+                          <a href="#SubClassOfTransitivityRule">subclass transitivity rule</a>
+                        </li>
+                        <li>
+                          <a href="#SubPropertyOfTransitivityRule">subproperty transitivity rule</a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#InversionRule">mapping inversion rule</a>
+                </li>
+                <li>
+                  <a href="#MutationRule">mapping mutation rule</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#SimilarityMeasure">similarity measure</a>
+              <ul class="hierarchy">
+                <li>
+                  <a href="#LanguageBasedSimilarityMeasure">language-based similarity measure</a>
+                </li>
+                <li>
+                  <a href="#StringBasedSimilarityMeasure">string-based similarity measure</a>
+                  <ul class="hierarchy">
+                    <li>
+                      <a href="#EditDistance">edit distance</a>
+                      <ul class="hierarchy">
+                        <li>
+                          <a href="#LevenshteinEditDistance">levenshtein distance</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="#HammingDistance">hamming distance</a>
+                    </li>
+                    <li>
+                      <a href="#nGramSimilarity">ngram similarity</a>
+                    </li>
+                    <li>
+                      <a href="#StringEquality">string equality</a>
+                    </li>
+                    <li>
+                      <a href="#SubstringSimilarity">substring similarity</a>
+                    </li>
+                    <li>
+                      <a href="#SubstringTest">substring test</a>
+                    </li>
+                    <li>
+                      <a href="#TokenBasedDistance">token-based distance</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <h3 id="class-definitions">Class Definitions</h3>
+        <div class="property entity" id="NCBITaxon_9606">
           <h3>human
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -408,9 +784,54 @@ td {
                 <code>http://purl.obolibrary.org/obo/NCBITaxon_9606</code>
               </td>
             </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="https://linked.data.gov.au/def/ontpub/hasMember" title="None. Defined in None">Has Member</a>
+              </th>
+              <td>
+                <ul class="pylodelitlist">
+                  <li>
+                    <span>
+                      <a href="https://orcid.org/0000-0002-6095-8718">https://orcid.org/0000-0002-6095-8718</a>
+                    </span>
+                  </li>
+                  <li>
+                    <span>
+                      <a href="https://orcid.org/0000-0002-7356-1779">https://orcid.org/0000-0002-7356-1779</a>
+                    </span>
+                  </li>
+                  <li>
+                    <span>
+                      <a href="https://orcid.org/0000-0003-4423-4370">https://orcid.org/0000-0003-4423-4370</a>
+                    </span>
+                  </li>
+                </ul>
+              </td>
+            </tr>
           </table>
         </div>
-        <div class="property entity" id="agent-basedmatchingprocess">
+        <div class="property entity" id="JournalArticle">
+          <h3>journal article
+            <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+          </h3>
+          <table>
+            <tr>
+              <th>IRI</th>
+              <td>
+                <code>http://purl.org/spar/fabio/JournalArticle</code>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="https://linked.data.gov.au/def/ontpub/hasMember" title="None. Defined in None">Has Member</a>
+              </th>
+              <td>
+                <a href="https://doi.org/10.1093/bioinformatics/btaf542">Assembly and reasoning over semantic mappings at scale for biomedical data integration</a>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="property entity" id="AgentBasedMatching">
           <h3>agent-based matching process
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -426,7 +847,7 @@ td {
                 <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
               </th>
               <td>
-                <ul>
+                <ul class="pylodelitlist">
                   <li><p>Distinguished from single-step LLM-based matching by the agent's autonomy over its own process. Distinguished from composite matching, which combines heterogeneous matching techniques under a fixed pipeline, by the agent's runtime control over what to do next. In current practice, agent-based matchers are predominantly driven by large language models, but this class does not commit to a particular agent technology — a specific process may also be classified as semapv:LLMBasedMatching (or any other matching class) where appropriate.</p></li>
                   <li><p>A matching process in which an autonomous agent plans and executes a multi-step workflow — typically involving tool use, retrieval, intermediate reasoning, and self-evaluation — to determine matches between entities. The agent decides at runtime what information to gather, which techniques to apply, and when to stop.</p></li>
                 </ul>
@@ -459,9 +880,20 @@ td {
                 </span>
               </td>
             </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2004/02/skos/core#altLabel" title="skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise disjoint properties. Defined in SKOS Vocabulary">Alternative Label</a>
+              </th>
+              <td>
+                <ul class="pylodelitlist">
+                  <li><p>agentic matching</p></li>
+                  <li><p>agentic ontology matching</p></li>
+                </ul>
+              </td>
+            </tr>
           </table>
         </div>
-        <div class="property entity" id="backgroundknowledge-basedmatchingprocess">
+        <div class="property entity" id="BackgroundKnowledgeBasedMatching">
           <h3>background knowledge-based matching process
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -507,7 +939,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="blanknormalisation">
+        <div class="property entity" id="BlankNormalisation">
           <h3>blank normalisation
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -553,7 +985,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="blocking">
+        <div class="property entity" id="Blocking">
           <h3>blocking
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -569,7 +1001,7 @@ td {
                 <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
               </th>
               <td>
-                <ul>
+                <ul class="pylodelitlist">
                   <li><p>Blocking is conceptually distinct from matching: a blocker is recall-oriented and typically encodes each entity independently of the others, whereas a matcher is precision-oriented and decides about a specific candidate pair. Many modern pipelines combine an embedding-based blocker with a transformer- or LLM-based matcher.</p></li>
                   <li><p>A mapping activity that, given two sets of input entities, produces a reduced set of candidate entity pairs likely to match — favouring recall over precision — to be passed on to a downstream matching process.</p></li>
                 </ul>
@@ -604,7 +1036,7 @@ td {
             </tr>
             <tr>
               <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/superClassOf" title="Inverse of RDFS' subClassOf. Defined in Ontology Documentation Profile">Super Class Of</a>
+                <a class="hover_property" href="https://linked.data.gov.au/def/ontpub/superClassOf" title="Inverse of RDFS' subClassOf. Defined in Ontology Documentation Profile">Super Class Of</a>
               </th>
               <td>
                 <span>
@@ -613,9 +1045,20 @@ td {
                 </span>
               </td>
             </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2004/02/skos/core#altLabel" title="skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise disjoint properties. Defined in SKOS Vocabulary">Alternative Label</a>
+              </th>
+              <td>
+                <ul class="pylodelitlist">
+                  <li><p>candidate generation</p></li>
+                  <li><p>candidate retrieval</p></li>
+                </ul>
+              </td>
+            </tr>
           </table>
         </div>
-        <div class="property entity" id="boundedpathmatching">
+        <div class="property entity" id="BoundedPathMatching">
           <h3>bounded path matching
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -631,7 +1074,7 @@ td {
                 <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
               </th>
               <td>
-                <ul>
+                <ul class="pylodelitlist">
                   <li><p>Described as a structural matching technique in Euzenat &amp; Shvaiko, "Ontology Matching" (2nd ed., 2013), and implemented in classical structural OM systems such as Anchor-PROMPT.</p></li>
                   <li><p>A structural matching process based on the comparison of the matched super- and subclass paths (up to a bounded depth) of two candidate entities.</p></li>
                 </ul>
@@ -666,7 +1109,53 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="cardinalityfiltering">
+        <div class="property entity" id="BroadMatchTransitivityRule">
+          <h3>broad match transitivity rule
+            <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+          </h3>
+          <table>
+            <tr>
+              <th>IRI</th>
+              <td>
+                <code>https://w3id.org/semapv/vocab/BroadMatchTransitivityRule</code>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
+              </th>
+              <td><p>An inference rule over the transitivity of skos:broadMatch such that (e₁, skos:broadMatch, e₂) and (e₂, skos:broadMatch, e₃) infer (e₁, skos:broadMatch, e₃)</p></td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2004/02/skos/core#example" title="An example of the use of a concept. Defined in SKOS Vocabulary">Example</a>
+              </th>
+              <td>
+                <pre>Because skos:broadMatch is transitive, (kim.hochschulfaechersystematik:n032, skos:broadMatch, kim.hochschulfaechersystematik:n40) and (kim.hochschulfaechersystematik:n40, skos:broadMatch, kim.hochschulfaechersystematik:n4) infers (kim.hochschulfaechersystematik:n032, skos:broadMatch, kim.hochschulfaechersystematik:n4)</pre>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://purl.org/dc/terms/source" title="A related resource from which the described resource is derived. Defined in DCMI Metadata Terms">Source</a>
+              </th>
+              <td>
+                <a href="https://doi.org/10.1093/bioinformatics/btaf542">Assembly and reasoning over semantic mappings at scale for biomedical data integration</a>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subClassOf" title="The subject is a subclass of a class. Defined in The RDF Schema vocabulary (RDFS)">Sub Class Of</a>
+              </th>
+              <td>
+                <span>
+                  <a href="https://w3id.org/semapv/vocab/TransitivityRule">transitivity rule</a>
+                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+                </span>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="property entity" id="CardinalityFiltering">
           <h3>cardinality filtering
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -690,7 +1179,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="casenormalization">
+        <div class="property entity" id="CaseNormalization">
           <h3>case normalization
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -736,7 +1225,56 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="compositematchingprocess">
+        <div class="property entity" id="ChainingRule">
+          <h3>mapping chaining rule
+            <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+          </h3>
+          <table>
+            <tr>
+              <th>IRI</th>
+              <td>
+                <code>https://w3id.org/semapv/vocab/ChainingRule</code>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
+              </th>
+              <td><p>An inference rule for mapping chaining, under which two or more mappings are chained to produce a new mapping based on their network structure. For example, a simple chaining rule takes mappings (e₁, p₁, e₂) and (e₂, p₂, e₃) and produces (e₁, p₃, e₃). Mappings produced under this rule should be assigned the justification semapv:MappingChaining.</p></td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://purl.org/dc/terms/source" title="A related resource from which the described resource is derived. Defined in DCMI Metadata Terms">Source</a>
+              </th>
+              <td>
+                <a href="https://doi.org/10.1093/bioinformatics/btaf542">Assembly and reasoning over semantic mappings at scale for biomedical data integration</a>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subClassOf" title="The subject is a subclass of a class. Defined in The RDF Schema vocabulary (RDFS)">Sub Class Of</a>
+              </th>
+              <td>
+                <span>
+                  <a href="https://w3id.org/semapv/vocab/InferenceRule">mapping inference rule</a>
+                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="https://linked.data.gov.au/def/ontpub/superClassOf" title="Inverse of RDFS' subClassOf. Defined in Ontology Documentation Profile">Super Class Of</a>
+              </th>
+              <td>
+                <span>
+                  <a href="https://w3id.org/semapv/vocab/TransitivityRule">transitivity rule</a>
+                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+                </span>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="property entity" id="CompositeMatching">
           <h3>composite matching process
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -774,7 +1312,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="diacriticssuppression">
+        <div class="property entity" id="DiacriticsSuppression">
           <h3>diacritics suppression
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -820,7 +1358,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="digitsuppression">
+        <div class="property entity" id="DigitSuppression">
           <h3>digit suppression
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -866,7 +1404,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="editdistance">
+        <div class="property entity" id="EditDistance">
           <h3>edit distance
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -898,7 +1436,7 @@ td {
             </tr>
             <tr>
               <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/superClassOf" title="Inverse of RDFS' subClassOf. Defined in Ontology Documentation Profile">Super Class Of</a>
+                <a class="hover_property" href="https://linked.data.gov.au/def/ontpub/superClassOf" title="Inverse of RDFS' subClassOf. Defined in Ontology Documentation Profile">Super Class Of</a>
               </th>
               <td>
                 <span>
@@ -909,7 +1447,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="embedding-basedblocking">
+        <div class="property entity" id="EmbeddingBasedBlocking">
           <h3>embedding-based blocking
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -953,9 +1491,20 @@ td {
                 </span>
               </td>
             </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2004/02/skos/core#altLabel" title="skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise disjoint properties. Defined in SKOS Vocabulary">Alternative Label</a>
+              </th>
+              <td>
+                <ul class="pylodelitlist">
+                  <li><p>bi-encoder blocking</p></li>
+                  <li><p>embedding-based candidate generation</p></li>
+                </ul>
+              </td>
+            </tr>
           </table>
         </div>
-        <div class="property entity" id="embedding-basedmatchingprocess">
+        <div class="property entity" id="EmbeddingBasedMatching">
           <h3>embedding-based matching process
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -971,7 +1520,7 @@ td {
                 <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
               </th>
               <td>
-                <ul>
+                <ul class="pylodelitlist">
                   <li><p>Where embedding similarity is used only to generate candidate pairs for a downstream matcher (rather than to make the final match decision), the process is more accurately classified as semapv:EmbeddingBasedBlocking.</p></li>
                   <li><p>A machine learning-based matching process in which matches are identified by comparing learned vector representations (embeddings) of entities under a vector similarity measure.</p></li>
                 </ul>
@@ -1006,10 +1555,10 @@ td {
             </tr>
             <tr>
               <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/superClassOf" title="Inverse of RDFS' subClassOf. Defined in Ontology Documentation Profile">Super Class Of</a>
+                <a class="hover_property" href="https://linked.data.gov.au/def/ontpub/superClassOf" title="Inverse of RDFS' subClassOf. Defined in Ontology Documentation Profile">Super Class Of</a>
               </th>
               <td>
-                <ul>
+                <ul class="pylodelitlist">
                   <li>
                     <span>
                       <a href="https://w3id.org/semapv/vocab/GraphRepresentationLearningBasedMatching">graph representation learning-based matching process</a>
@@ -1025,9 +1574,183 @@ td {
                 </ul>
               </td>
             </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2004/02/skos/core#altLabel" title="skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise disjoint properties. Defined in SKOS Vocabulary">Alternative Label</a>
+              </th>
+              <td><p>embedding similarity-based matching</p></td>
+            </tr>
           </table>
         </div>
-        <div class="property entity" id="graphrepresentationlearning-basedmatchingprocess">
+        <div class="property entity" id="EquivalentClassTransitivityRule">
+          <h3>equivalent class transitivity rule
+            <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+          </h3>
+          <table>
+            <tr>
+              <th>IRI</th>
+              <td>
+                <code>https://w3id.org/semapv/vocab/EquivalentClassTransitivityRule</code>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
+              </th>
+              <td><p>An inference rule over the transitivity of owl:equivalentClass such that (e₁, owl:equivalentClass, e₂) and (e₂, owl:equivalentClass, e₃) infer (e₁, owl:equivalentClass, e₃)</p></td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://purl.org/dc/terms/source" title="A related resource from which the described resource is derived. Defined in DCMI Metadata Terms">Source</a>
+              </th>
+              <td>
+                <a href="https://doi.org/10.1093/bioinformatics/btaf542">Assembly and reasoning over semantic mappings at scale for biomedical data integration</a>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subClassOf" title="The subject is a subclass of a class. Defined in The RDF Schema vocabulary (RDFS)">Sub Class Of</a>
+              </th>
+              <td>
+                <span>
+                  <a href="https://w3id.org/semapv/vocab/TransitivityRule">transitivity rule</a>
+                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+                </span>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="property entity" id="EquivalentIndividualTransitivityRule">
+          <h3>equivalent individual transitivity rule
+            <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+          </h3>
+          <table>
+            <tr>
+              <th>IRI</th>
+              <td>
+                <code>https://w3id.org/semapv/vocab/EquivalentIndividualTransitivityRule</code>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
+              </th>
+              <td><p>An inference rule over the transitivity of owl:sameAs such that (e₁, owl:sameAs, e₂) and (e₂, owl:sameAs, e₃) infer (e₁, owl:sameAs, e₃)</p></td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2004/02/skos/core#example" title="An example of the use of a concept. Defined in SKOS Vocabulary">Example</a>
+              </th>
+              <td>
+                <pre>Because owl:sameAs is transitive, ror:04xfq0f34 owl:sameAs wikidata:Q273263 and wikidata:Q273263 owl:sameAs ringgold:9165 infers ror:04xfq0f34 owl:sameAs ringgold:9165</pre>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://purl.org/dc/terms/source" title="A related resource from which the described resource is derived. Defined in DCMI Metadata Terms">Source</a>
+              </th>
+              <td>
+                <a href="https://doi.org/10.1093/bioinformatics/btaf542">Assembly and reasoning over semantic mappings at scale for biomedical data integration</a>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subClassOf" title="The subject is a subclass of a class. Defined in The RDF Schema vocabulary (RDFS)">Sub Class Of</a>
+              </th>
+              <td>
+                <span>
+                  <a href="https://w3id.org/semapv/vocab/TransitivityRule">transitivity rule</a>
+                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+                </span>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="property entity" id="EquivalentPropertyTransitivityRule">
+          <h3>equivalent property transitivity rule
+            <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+          </h3>
+          <table>
+            <tr>
+              <th>IRI</th>
+              <td>
+                <code>https://w3id.org/semapv/vocab/EquivalentPropertyTransitivityRule</code>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
+              </th>
+              <td><p>An inference rule over the transitivity of owl:equivalentProperty such that (e₁, owl:equivalentProperty, e₂) and (e₂, owl:equivalentProperty, e₃) infer (e₁, owl:equivalentProperty, e₃)</p></td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://purl.org/dc/terms/source" title="A related resource from which the described resource is derived. Defined in DCMI Metadata Terms">Source</a>
+              </th>
+              <td>
+                <a href="https://doi.org/10.1093/bioinformatics/btaf542">Assembly and reasoning over semantic mappings at scale for biomedical data integration</a>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subClassOf" title="The subject is a subclass of a class. Defined in The RDF Schema vocabulary (RDFS)">Sub Class Of</a>
+              </th>
+              <td>
+                <span>
+                  <a href="https://w3id.org/semapv/vocab/TransitivityRule">transitivity rule</a>
+                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+                </span>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="property entity" id="ExactMatchTransitivityRule">
+          <h3>exact match transitivity rule
+            <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+          </h3>
+          <table>
+            <tr>
+              <th>IRI</th>
+              <td>
+                <code>https://w3id.org/semapv/vocab/ExactMatchTransitivityRule</code>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
+              </th>
+              <td><p>An inference rule over the transitivity of skos:exactMatch such that (e₁, skos:exactMatch, e₂) and (e₂, skos:exactMatch, e₃) infer (e₁, skos:exactMatch, e₃)</p></td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2004/02/skos/core#example" title="An example of the use of a concept. Defined in SKOS Vocabulary">Example</a>
+              </th>
+              <td>
+                <pre>Because skos:exactMatch is transitive, mesh:C000089 skos:exactMatch CHEBI:28646 and CHEBI:28646 skos:exactMatch CAS:645-92-1 infers mesh:C000089 skos:exactMatch CAS:645-92-1</pre>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://purl.org/dc/terms/source" title="A related resource from which the described resource is derived. Defined in DCMI Metadata Terms">Source</a>
+              </th>
+              <td>
+                <a href="https://doi.org/10.1093/bioinformatics/btaf542">Assembly and reasoning over semantic mappings at scale for biomedical data integration</a>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subClassOf" title="The subject is a subclass of a class. Defined in The RDF Schema vocabulary (RDFS)">Sub Class Of</a>
+              </th>
+              <td>
+                <span>
+                  <a href="https://w3id.org/semapv/vocab/TransitivityRule">transitivity rule</a>
+                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+                </span>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="property entity" id="GraphRepresentationLearningBasedMatching">
           <h3>graph representation learning-based matching process
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -1071,9 +1794,20 @@ td {
                 </span>
               </td>
             </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2004/02/skos/core#altLabel" title="skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise disjoint properties. Defined in SKOS Vocabulary">Alternative Label</a>
+              </th>
+              <td>
+                <ul class="pylodelitlist">
+                  <li><p>graph embedding-based matching</p></li>
+                  <li><p>graph machine learning-based matching</p></li>
+                </ul>
+              </td>
+            </tr>
           </table>
         </div>
-        <div class="property entity" id="hammingdistance">
+        <div class="property entity" id="HammingDistance">
           <h3>hamming distance
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -1105,7 +1839,66 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="instance-basedmatchingprocess">
+        <div class="property entity" id="InferenceRule">
+          <h3>mapping inference rule
+            <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+          </h3>
+          <table>
+            <tr>
+              <th>IRI</th>
+              <td>
+                <code>https://w3id.org/semapv/vocab/InferenceRule</code>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
+              </th>
+              <td>
+                <ul class="pylodelitlist">
+                  <li><p>The mapping inference rules were originally conceived as part of the design document for the Semantic Mapping Reasoner and Assembler (SeMRA; https://github.com/biopragmatics/semra), then adapted into the SSSOM documentation (https://mapping-commons.github.io/sssom/chaining-rules/), then encoded formally in SEMAPV</p></li>
+                  <li><p>An rule for inferring a new semantic mapping from two or more existing mappings</p></li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://purl.org/dc/terms/source" title="A related resource from which the described resource is derived. Defined in DCMI Metadata Terms">Source</a>
+              </th>
+              <td>
+                <a href="https://doi.org/10.1093/bioinformatics/btaf542">Assembly and reasoning over semantic mappings at scale for biomedical data integration</a>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="https://linked.data.gov.au/def/ontpub/superClassOf" title="Inverse of RDFS' subClassOf. Defined in Ontology Documentation Profile">Super Class Of</a>
+              </th>
+              <td>
+                <ul class="pylodelitlist">
+                  <li>
+                    <span>
+                      <a href="https://w3id.org/semapv/vocab/ChainingRule">mapping chaining rule</a>
+                      <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+                    </span>
+                  </li>
+                  <li>
+                    <span>
+                      <a href="https://w3id.org/semapv/vocab/InversionRule">mapping inversion rule</a>
+                      <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+                    </span>
+                  </li>
+                  <li>
+                    <span>
+                      <a href="https://w3id.org/semapv/vocab/MutationRule">mapping mutation rule</a>
+                      <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+                    </span>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="property entity" id="InstanceBasedMatching">
           <h3>instance-based matching process
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -1151,7 +1944,53 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="LLM-basedmatchingprocess">
+        <div class="property entity" id="InversionRule">
+          <h3>mapping inversion rule
+            <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+          </h3>
+          <table>
+            <tr>
+              <th>IRI</th>
+              <td>
+                <code>https://w3id.org/semapv/vocab/InversionRule</code>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
+              </th>
+              <td><p>An inference rule for mapping inversions, under which a mapping (s, p, o) is inverted (o, p', s) if and only if p and p' are inverse predicates, such as skos:broadMatch and skos:narrowMatch. Some predicates such as skos:exactMatch are their own inverses. Mappings produced under this rule should be assigned the justification semapv:MappingInversion.</p></td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2004/02/skos/core#example" title="An example of the use of a concept. Defined in SKOS Vocabulary">Example</a>
+              </th>
+              <td>
+                <pre>Because skos:exactMatch is its own inverse predicate, mesh:C000089 skos:exactMatch CHEBI:28646 infers CHEBI:28646 skos:exactMatch. mesh:C000089</pre>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://purl.org/dc/terms/source" title="A related resource from which the described resource is derived. Defined in DCMI Metadata Terms">Source</a>
+              </th>
+              <td>
+                <a href="https://doi.org/10.1093/bioinformatics/btaf542">Assembly and reasoning over semantic mappings at scale for biomedical data integration</a>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subClassOf" title="The subject is a subclass of a class. Defined in The RDF Schema vocabulary (RDFS)">Sub Class Of</a>
+              </th>
+              <td>
+                <span>
+                  <a href="https://w3id.org/semapv/vocab/InferenceRule">mapping inference rule</a>
+                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+                </span>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="property entity" id="LLMBasedMatching">
           <h3>LLM-based matching process
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -1167,7 +2006,7 @@ td {
                 <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
               </th>
               <td>
-                <ul>
+                <ul class="pylodelitlist">
                   <li><p>Where an LLM is used only to produce embeddings that are then compared by similarity, the process is an embedding-based (transformer-based) matching process rather than an LLM-based one. The classifier is how the model is used, not which model. Multi-step, tool-using, autonomous workflows driven by an LLM are captured by semapv:AgentBasedMatching.</p></li>
                   <li><p>A machine learning-based matching process in which a large language model determines matches between entities, typically through single-step or few-shot prompting, or through fine-tuning the model to judge mapping candidates or generate mappings directly.</p></li>
                 </ul>
@@ -1200,9 +2039,15 @@ td {
                 </span>
               </td>
             </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2004/02/skos/core#altLabel" title="skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise disjoint properties. Defined in SKOS Vocabulary">Alternative Label</a>
+              </th>
+              <td><p>large language model-based matching</p></td>
+            </tr>
           </table>
         </div>
-        <div class="property entity" id="language-basedsimilaritymeasure">
+        <div class="property entity" id="LanguageBasedSimilarityMeasure">
           <h3>language-based similarity measure
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -1234,7 +2079,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="lemmatization">
+        <div class="property entity" id="Lemmatization">
           <h3>lemmatization
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -1272,7 +2117,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="levenshteindistance">
+        <div class="property entity" id="LevenshteinEditDistance">
           <h3>levenshtein distance
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -1304,7 +2149,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="lexicalmatchingprocess">
+        <div class="property entity" id="LexicalMatching">
           <h3>lexical matching process
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -1342,7 +2187,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="lexicalsimilaritythreshold-basedmatchingprocess">
+        <div class="property entity" id="LexicalSimilarityThresholdMatching">
           <h3>lexical similarity threshold-based matching process
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -1380,7 +2225,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="linkstripping">
+        <div class="property entity" id="LinkStripping">
           <h3>link stripping
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -1426,7 +2271,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="logicalconsistencyfiltering">
+        <div class="property entity" id="LogicalConsistencyFiltering">
           <h3>logical consistency filtering
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -1450,7 +2295,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="logicalreasoningmatchingprocess">
+        <div class="property entity" id="LogicalReasoning">
           <h3>logical reasoning matching process
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -1488,7 +2333,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="machinelearning-basedmatchingprocess">
+        <div class="property entity" id="MachineLearningBasedMatching">
           <h3>machine learning-based matching process
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -1534,10 +2379,10 @@ td {
             </tr>
             <tr>
               <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/superClassOf" title="Inverse of RDFS' subClassOf. Defined in Ontology Documentation Profile">Super Class Of</a>
+                <a class="hover_property" href="https://linked.data.gov.au/def/ontpub/superClassOf" title="Inverse of RDFS' subClassOf. Defined in Ontology Documentation Profile">Super Class Of</a>
               </th>
               <td>
-                <ul>
+                <ul class="pylodelitlist">
                   <li>
                     <span>
                       <a href="https://w3id.org/semapv/vocab/EmbeddingBasedMatching">embedding-based matching process</a>
@@ -1553,9 +2398,15 @@ td {
                 </ul>
               </td>
             </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2004/02/skos/core#altLabel" title="skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise disjoint properties. Defined in SKOS Vocabulary">Alternative Label</a>
+              </th>
+              <td><p>ML-based matching</p></td>
+            </tr>
           </table>
         </div>
-        <div class="property entity" id="manualmappingcuration">
+        <div class="property entity" id="ManualMappingCuration">
           <h3>manual mapping curation
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -1593,7 +2444,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="mapping">
+        <div class="property entity" id="Mapping">
           <h3>mapping
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -1620,7 +2471,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="mappingactivity">
+        <div class="property entity" id="MappingActivity">
           <h3>mapping activity
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -1647,10 +2498,10 @@ td {
             </tr>
             <tr>
               <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/superClassOf" title="Inverse of RDFS' subClassOf. Defined in Ontology Documentation Profile">Super Class Of</a>
+                <a class="hover_property" href="https://linked.data.gov.au/def/ontpub/superClassOf" title="Inverse of RDFS' subClassOf. Defined in Ontology Documentation Profile">Super Class Of</a>
               </th>
               <td>
-                <ul>
+                <ul class="pylodelitlist">
                   <li>
                     <span>
                       <a href="https://w3id.org/semapv/vocab/Blocking">blocking</a>
@@ -1686,7 +2537,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="mappingchaining-basedmatchingprocess">
+        <div class="property entity" id="MappingChaining">
           <h3>mapping chaining-based matching process
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -1724,7 +2575,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="mappinginversion-basedmatchingprocess">
+        <div class="property entity" id="MappingInversion">
           <h3>mapping inversion-based matching process
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -1768,9 +2619,22 @@ td {
                 </span>
               </td>
             </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2004/02/skos/core#altLabel" title="skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise disjoint properties. Defined in SKOS Vocabulary">Alternative Label</a>
+              </th>
+              <td>
+                <ul class="pylodelitlist">
+                  <li><p>mapping flipping</p></li>
+                  <li><p>mapping inversion</p></li>
+                  <li><p>mapping inverting</p></li>
+                  <li><p>semantic walk-backs</p></li>
+                </ul>
+              </td>
+            </tr>
           </table>
         </div>
-        <div class="property entity" id="mappingreview">
+        <div class="property entity" id="MappingReview">
           <h3>mapping review
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -1808,7 +2672,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="matchingprocess">
+        <div class="property entity" id="Matching">
           <h3>matching process
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -1846,10 +2710,10 @@ td {
             </tr>
             <tr>
               <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/superClassOf" title="Inverse of RDFS' subClassOf. Defined in Ontology Documentation Profile">Super Class Of</a>
+                <a class="hover_property" href="https://linked.data.gov.au/def/ontpub/superClassOf" title="Inverse of RDFS' subClassOf. Defined in Ontology Documentation Profile">Super Class Of</a>
               </th>
               <td>
-                <ul>
+                <ul class="pylodelitlist">
                   <li>
                     <span>
                       <a href="https://w3id.org/semapv/vocab/AgentBasedMatching">agent-based matching process</a>
@@ -1937,9 +2801,20 @@ td {
                 </ul>
               </td>
             </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2004/02/skos/core#altLabel" title="skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise disjoint properties. Defined in SKOS Vocabulary">Alternative Label</a>
+              </th>
+              <td>
+                <ul class="pylodelitlist">
+                  <li><p>matching operation</p></li>
+                  <li><p>matching task</p></li>
+                </ul>
+              </td>
+            </tr>
           </table>
         </div>
-        <div class="property entity" id="matchingprocesspost-processing">
+        <div class="property entity" id="MatchingPostProcessing">
           <h3>matching process post-processing
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -1969,10 +2844,10 @@ td {
             </tr>
             <tr>
               <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/superClassOf" title="Inverse of RDFS' subClassOf. Defined in Ontology Documentation Profile">Super Class Of</a>
+                <a class="hover_property" href="https://linked.data.gov.au/def/ontpub/superClassOf" title="Inverse of RDFS' subClassOf. Defined in Ontology Documentation Profile">Super Class Of</a>
               </th>
               <td>
-                <ul>
+                <ul class="pylodelitlist">
                   <li>
                     <span>
                       <a href="https://w3id.org/semapv/vocab/CardinalityFiltering">cardinality filtering</a>
@@ -2002,7 +2877,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="matchingprocesspre-processing">
+        <div class="property entity" id="MatchingPreprocessing">
           <h3>matching process pre-processing
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -2032,7 +2907,7 @@ td {
             </tr>
             <tr>
               <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/superClassOf" title="Inverse of RDFS' subClassOf. Defined in Ontology Documentation Profile">Super Class Of</a>
+                <a class="hover_property" href="https://linked.data.gov.au/def/ontpub/superClassOf" title="Inverse of RDFS' subClassOf. Defined in Ontology Documentation Profile">Super Class Of</a>
               </th>
               <td>
                 <span>
@@ -2043,7 +2918,91 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="normalization">
+        <div class="property entity" id="MutationRule">
+          <h3>mapping mutation rule
+            <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+          </h3>
+          <table>
+            <tr>
+              <th>IRI</th>
+              <td>
+                <code>https://w3id.org/semapv/vocab/MutationRule</code>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
+              </th>
+              <td><p>An inference rule under which a mapping (s, p, o) is mutated (s, p', o). For example, owl:equivalentClass or owl:equivalentProperty can always be weakened to skos:exactMatch. In some circumstances, oboInOwl:hasDbXref can be strengthened to skos:exactMatch. Mappings produced under this rule should be assigned the justification semapv:BackgroundKnowledgeBasedMatching.</p></td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://purl.org/dc/terms/source" title="A related resource from which the described resource is derived. Defined in DCMI Metadata Terms">Source</a>
+              </th>
+              <td>
+                <a href="https://doi.org/10.1093/bioinformatics/btaf542">Assembly and reasoning over semantic mappings at scale for biomedical data integration</a>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subClassOf" title="The subject is a subclass of a class. Defined in The RDF Schema vocabulary (RDFS)">Sub Class Of</a>
+              </th>
+              <td>
+                <span>
+                  <a href="https://w3id.org/semapv/vocab/InferenceRule">mapping inference rule</a>
+                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+                </span>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="property entity" id="NarrowMatchTransitivityRule">
+          <h3>narrow match transitivity rule
+            <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+          </h3>
+          <table>
+            <tr>
+              <th>IRI</th>
+              <td>
+                <code>https://w3id.org/semapv/vocab/NarrowMatchTransitivityRule</code>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
+              </th>
+              <td><p>An inference rule over the transitivity of skos:narrowMatch such that (e₁, skos:narrowMatch, e₂) and (e₂, skos:narrowMatch, e₃) infer (e₁, skos:narrowMatch, e₃)</p></td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2004/02/skos/core#example" title="An example of the use of a concept. Defined in SKOS Vocabulary">Example</a>
+              </th>
+              <td>
+                <pre>Because skos:narrowMatch is transitive, (kim.hochschulfaechersystematik:n4, skos:narrowMatch, kim.hochschulfaechersystematik:n40) and (kim.hochschulfaechersystematik:n40, skos:narrowMatch, kim.hochschulfaechersystematik:n032) infers (kim.hochschulfaechersystematik:n4, skos:narrowMatch, kim.hochschulfaechersystematik:n032)</pre>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://purl.org/dc/terms/source" title="A related resource from which the described resource is derived. Defined in DCMI Metadata Terms">Source</a>
+              </th>
+              <td>
+                <a href="https://doi.org/10.1093/bioinformatics/btaf542">Assembly and reasoning over semantic mappings at scale for biomedical data integration</a>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subClassOf" title="The subject is a subclass of a class. Defined in The RDF Schema vocabulary (RDFS)">Sub Class Of</a>
+              </th>
+              <td>
+                <span>
+                  <a href="https://w3id.org/semapv/vocab/TransitivityRule">transitivity rule</a>
+                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+                </span>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="property entity" id="Normalization">
           <h3>normalization
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -2081,10 +3040,10 @@ td {
             </tr>
             <tr>
               <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/superClassOf" title="Inverse of RDFS' subClassOf. Defined in Ontology Documentation Profile">Super Class Of</a>
+                <a class="hover_property" href="https://linked.data.gov.au/def/ontpub/superClassOf" title="Inverse of RDFS' subClassOf. Defined in Ontology Documentation Profile">Super Class Of</a>
               </th>
               <td>
-                <ul>
+                <ul class="pylodelitlist">
                   <li>
                     <span>
                       <a href="https://w3id.org/semapv/vocab/BlankNormalisation">blank normalisation</a>
@@ -2168,7 +3127,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="punctuationelimination">
+        <div class="property entity" id="PunctuationElemination">
           <h3>punctuation elimination
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -2214,7 +3173,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="regexremoval">
+        <div class="property entity" id="RegexRemoval">
           <h3>regex removal
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -2252,7 +3211,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="regexreplacement">
+        <div class="property entity" id="RegexReplacement">
           <h3>regex replacement
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -2290,7 +3249,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="semanticsimilaritythreshold-basedmatchingprocess">
+        <div class="property entity" id="SemanticSimilarityThresholdMatching">
           <h3>semantic similarity threshold-based matching process
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -2328,7 +3287,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="similaritymeasure">
+        <div class="property entity" id="SimilarityMeasure">
           <h3>similarity measure
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -2355,10 +3314,10 @@ td {
             </tr>
             <tr>
               <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/superClassOf" title="Inverse of RDFS' subClassOf. Defined in Ontology Documentation Profile">Super Class Of</a>
+                <a class="hover_property" href="https://linked.data.gov.au/def/ontpub/superClassOf" title="Inverse of RDFS' subClassOf. Defined in Ontology Documentation Profile">Super Class Of</a>
               </th>
               <td>
-                <ul>
+                <ul class="pylodelitlist">
                   <li>
                     <span>
                       <a href="https://w3id.org/semapv/vocab/LanguageBasedSimilarityMeasure">language-based similarity measure</a>
@@ -2376,7 +3335,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="stablemarriagefiltering">
+        <div class="property entity" id="StableMarriageFiltering">
           <h3>stable marriage filtering
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -2400,7 +3359,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="stemming">
+        <div class="property entity" id="Stemming">
           <h3>stemming
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -2430,7 +3389,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="stop-wordremoval">
+        <div class="property entity" id="StopWordRemoval">
           <h3>stop-word removal
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -2476,7 +3435,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="string-basedsimilaritymeasure">
+        <div class="property entity" id="StringBasedSimilarityMeasure">
           <h3>string-based similarity measure
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -2514,10 +3473,10 @@ td {
             </tr>
             <tr>
               <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/superClassOf" title="Inverse of RDFS' subClassOf. Defined in Ontology Documentation Profile">Super Class Of</a>
+                <a class="hover_property" href="https://linked.data.gov.au/def/ontpub/superClassOf" title="Inverse of RDFS' subClassOf. Defined in Ontology Documentation Profile">Super Class Of</a>
               </th>
               <td>
-                <ul>
+                <ul class="pylodelitlist">
                   <li>
                     <span>
                       <a href="https://w3id.org/semapv/vocab/EditDistance">edit distance</a>
@@ -2565,7 +3524,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="stringequality">
+        <div class="property entity" id="StringEquality">
           <h3>string equality
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -2603,7 +3562,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="structuralmatchingprocess">
+        <div class="property entity" id="StructuralMatching">
           <h3>structural matching process
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -2649,7 +3608,7 @@ td {
             </tr>
             <tr>
               <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/superClassOf" title="Inverse of RDFS' subClassOf. Defined in Ontology Documentation Profile">Super Class Of</a>
+                <a class="hover_property" href="https://linked.data.gov.au/def/ontpub/superClassOf" title="Inverse of RDFS' subClassOf. Defined in Ontology Documentation Profile">Super Class Of</a>
               </th>
               <td>
                 <span>
@@ -2660,7 +3619,99 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="substringsimilarity">
+        <div class="property entity" id="SubClassOfTransitivityRule">
+          <h3>subclass transitivity rule
+            <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+          </h3>
+          <table>
+            <tr>
+              <th>IRI</th>
+              <td>
+                <code>https://w3id.org/semapv/vocab/SubClassOfTransitivityRule</code>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
+              </th>
+              <td><p>An inference rule over the transitivity of rdfs:subClassOf such that (e₁, rdfs:subClassOf , e₂) and (e₂, rdfs:subClassOf , e₃) infer (e₁, rdfs:subClassOf , e₃)</p></td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2004/02/skos/core#example" title="An example of the use of a concept. Defined in SKOS Vocabulary">Example</a>
+              </th>
+              <td>
+                <pre>Because rdfs:subClassOf is transitive (DOID:2934, rdfs:subClassOf, DOID:934) and (DOID:934, rdfs:subClassOf, DOID:0050117) infers (DOID:2934, rdfs:subClassOf, DOID:0050117)</pre>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://purl.org/dc/terms/source" title="A related resource from which the described resource is derived. Defined in DCMI Metadata Terms">Source</a>
+              </th>
+              <td>
+                <a href="https://doi.org/10.1093/bioinformatics/btaf542">Assembly and reasoning over semantic mappings at scale for biomedical data integration</a>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subClassOf" title="The subject is a subclass of a class. Defined in The RDF Schema vocabulary (RDFS)">Sub Class Of</a>
+              </th>
+              <td>
+                <span>
+                  <a href="https://w3id.org/semapv/vocab/TransitivityRule">transitivity rule</a>
+                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+                </span>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="property entity" id="SubPropertyOfTransitivityRule">
+          <h3>subproperty transitivity rule
+            <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+          </h3>
+          <table>
+            <tr>
+              <th>IRI</th>
+              <td>
+                <code>https://w3id.org/semapv/vocab/SubPropertyOfTransitivityRule</code>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
+              </th>
+              <td><p>An inference rule over the transitivity of rdfs:subPropertyOf such that (e₁, rdfs:subPropertyOf , e₂) and (e₂, rdfs:subPropertyOf , e₃) infer (e₁, rdfs:subPropertyOf, e₃)</p></td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2004/02/skos/core#example" title="An example of the use of a concept. Defined in SKOS Vocabulary">Example</a>
+              </th>
+              <td>
+                <pre>Because rdfs:subPropertyOf is transitive, (RO:0000092, rdfs:subPropertyOf, RO:0000052) and (RO:0000052, rdfs:subClassOf, RO:0002314) infers (RO:0000092, rdfs:subPropertyOf ,RO:0002314)</pre>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://purl.org/dc/terms/source" title="A related resource from which the described resource is derived. Defined in DCMI Metadata Terms">Source</a>
+              </th>
+              <td>
+                <a href="https://doi.org/10.1093/bioinformatics/btaf542">Assembly and reasoning over semantic mappings at scale for biomedical data integration</a>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subClassOf" title="The subject is a subclass of a class. Defined in The RDF Schema vocabulary (RDFS)">Sub Class Of</a>
+              </th>
+              <td>
+                <span>
+                  <a href="https://w3id.org/semapv/vocab/TransitivityRule">transitivity rule</a>
+                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+                </span>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="property entity" id="SubstringSimilarity">
           <h3>substring similarity
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -2692,7 +3743,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="substringtest">
+        <div class="property entity" id="SubstringTest">
           <h3>substring test
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -2724,7 +3775,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="termextraction">
+        <div class="property entity" id="TermExtraction">
           <h3>term extraction
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -2754,9 +3805,15 @@ td {
                 </span>
               </td>
             </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2004/02/skos/core#altLabel" title="skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise disjoint properties. Defined in SKOS Vocabulary">Alternative Label</a>
+              </th>
+              <td><p>named entity recognition</p></td>
+            </tr>
           </table>
         </div>
-        <div class="property entity" id="thresholdfiltering">
+        <div class="property entity" id="ThresholdFiltering">
           <h3>threshold filtering
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -2780,7 +3837,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="token-baseddistance">
+        <div class="property entity" id="TokenBasedDistance">
           <h3>token-based distance
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -2812,7 +3869,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="tokenization">
+        <div class="property entity" id="Tokenization">
           <h3>tokenization
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -2844,7 +3901,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="transformer-basedmatchingprocess">
+        <div class="property entity" id="TransformerBasedMatching">
           <h3>transformer-based matching process
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -2860,7 +3917,7 @@ td {
                 <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
               </th>
               <td>
-                <ul>
+                <ul class="pylodelitlist">
                   <li><p>Transformer models are a deep learning architecture designed to handle sequential data, particularly for natural language processing tasks.</p></li>
                   <li><p>An embedding-based matching process that uses transformer models to produce contextual vector representations of entity features for similarity comparison.</p></li>
                 </ul>
@@ -2895,7 +3952,102 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="unspecifiedmatchingprocess">
+        <div class="property entity" id="TransitivityRule">
+          <h3>transitivity rule
+            <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+          </h3>
+          <table>
+            <tr>
+              <th>IRI</th>
+              <td>
+                <code>https://w3id.org/semapv/vocab/TransitivityRule</code>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
+              </th>
+              <td><p>An inference rule over the transitivity of a predicate p such that (e₁, p₁, e₂) and (e₂, p₂, e₃) infer (e₁, p₃, e₃). A common transitivity rule is when p₁=p₂=p₃=skos:exactMatch.</p></td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://purl.org/dc/terms/source" title="A related resource from which the described resource is derived. Defined in DCMI Metadata Terms">Source</a>
+              </th>
+              <td>
+                <a href="https://doi.org/10.1093/bioinformatics/btaf542">Assembly and reasoning over semantic mappings at scale for biomedical data integration</a>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subClassOf" title="The subject is a subclass of a class. Defined in The RDF Schema vocabulary (RDFS)">Sub Class Of</a>
+              </th>
+              <td>
+                <span>
+                  <a href="https://w3id.org/semapv/vocab/ChainingRule">mapping chaining rule</a>
+                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="https://linked.data.gov.au/def/ontpub/superClassOf" title="Inverse of RDFS' subClassOf. Defined in Ontology Documentation Profile">Super Class Of</a>
+              </th>
+              <td>
+                <ul class="pylodelitlist">
+                  <li>
+                    <span>
+                      <a href="https://w3id.org/semapv/vocab/BroadMatchTransitivityRule">broad match transitivity rule</a>
+                      <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+                    </span>
+                  </li>
+                  <li>
+                    <span>
+                      <a href="https://w3id.org/semapv/vocab/EquivalentClassTransitivityRule">equivalent class transitivity rule</a>
+                      <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+                    </span>
+                  </li>
+                  <li>
+                    <span>
+                      <a href="https://w3id.org/semapv/vocab/EquivalentIndividualTransitivityRule">equivalent individual transitivity rule</a>
+                      <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+                    </span>
+                  </li>
+                  <li>
+                    <span>
+                      <a href="https://w3id.org/semapv/vocab/EquivalentPropertyTransitivityRule">equivalent property transitivity rule</a>
+                      <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+                    </span>
+                  </li>
+                  <li>
+                    <span>
+                      <a href="https://w3id.org/semapv/vocab/ExactMatchTransitivityRule">exact match transitivity rule</a>
+                      <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+                    </span>
+                  </li>
+                  <li>
+                    <span>
+                      <a href="https://w3id.org/semapv/vocab/NarrowMatchTransitivityRule">narrow match transitivity rule</a>
+                      <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+                    </span>
+                  </li>
+                  <li>
+                    <span>
+                      <a href="https://w3id.org/semapv/vocab/SubClassOfTransitivityRule">subclass transitivity rule</a>
+                      <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+                    </span>
+                  </li>
+                  <li>
+                    <span>
+                      <a href="https://w3id.org/semapv/vocab/SubPropertyOfTransitivityRule">subproperty transitivity rule</a>
+                      <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+                    </span>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="property entity" id="UnspecifiedMatching">
           <h3>unspecified matching process
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -2933,7 +4085,7 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="ngramsimilarity">
+        <div class="property entity" id="nGramSimilarity">
           <h3>ngram similarity
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
@@ -2979,10 +4131,18 @@ td {
                 <code>http://purl.obolibrary.org/obo/IAO_0000700</code>
               </td>
             </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#isDefinedBy" title="The definition of the subject resource. Defined in The RDF Schema vocabulary (RDFS)">Is Defined By</a>
+              </th>
+              <td>
+                <a href="http://purl.obolibrary.org/obo/iao.owl">obo:iao.owl</a>
+              </td>
+            </tr>
           </table>
         </div>
         <div class="property entity" id="contributor">
-          <h3>contributor
+          <h3>Contributor
             <sup class="sup-ap" title="OWL Annotation Property">ap</sup>
           </h3>
           <table>
@@ -2995,7 +4155,7 @@ td {
           </table>
         </div>
         <div class="property entity" id="creator">
-          <h3>creator
+          <h3>Creator
             <sup class="sup-ap" title="OWL Annotation Property">ap</sup>
           </h3>
           <table>
@@ -3008,7 +4168,7 @@ td {
           </table>
         </div>
         <div class="property entity" id="description">
-          <h3>description
+          <h3>Description
             <sup class="sup-ap" title="OWL Annotation Property">ap</sup>
           </h3>
           <table>
@@ -3021,7 +4181,7 @@ td {
           </table>
         </div>
         <div class="property entity" id="license">
-          <h3>license
+          <h3>License
             <sup class="sup-ap" title="OWL Annotation Property">ap</sup>
           </h3>
           <table>
@@ -3034,7 +4194,7 @@ td {
           </table>
         </div>
         <div class="property entity" id="source">
-          <h3>source
+          <h3>Source
             <sup class="sup-ap" title="OWL Annotation Property">ap</sup>
           </h3>
           <table>
@@ -3047,7 +4207,7 @@ td {
           </table>
         </div>
         <div class="property entity" id="title">
-          <h3>title
+          <h3>Title
             <sup class="sup-ap" title="OWL Annotation Property">ap</sup>
           </h3>
           <table>
@@ -3060,7 +4220,7 @@ td {
           </table>
         </div>
         <div class="property entity" id="altLabel">
-          <h3>alt label
+          <h3>Alt Label
             <sup class="sup-ap" title="OWL Annotation Property">ap</sup>
           </h3>
           <table>
@@ -3118,7 +4278,7 @@ td {
             </tr>
             <tr>
               <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/superPropertyOf" title="Inverse of RDFS' subPropertyOf. Defined in Ontology Documentation Profile">Super Property Of</a>
+                <a class="hover_property" href="https://linked.data.gov.au/def/ontpub/superPropertyOf" title="Inverse of RDFS' subPropertyOf. Defined in Ontology Documentation Profile">Super Property Of</a>
               </th>
               <td>
                 <span>
@@ -3175,10 +4335,10 @@ td {
             </tr>
             <tr>
               <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/superPropertyOf" title="Inverse of RDFS' subPropertyOf. Defined in Ontology Documentation Profile">Super Property Of</a>
+                <a class="hover_property" href="https://linked.data.gov.au/def/ontpub/superPropertyOf" title="Inverse of RDFS' subPropertyOf. Defined in Ontology Documentation Profile">Super Property Of</a>
               </th>
               <td>
-                <ul>
+                <ul class="pylodelitlist">
                   <li>
                     <span>
                       <a href="http://www.w3.org/2004/02/skos/core#exactMatch">has exact match</a>
@@ -3197,7 +4357,7 @@ td {
           </table>
         </div>
         <div class="property entity" id="definition">
-          <h3>definition
+          <h3>Definition
             <sup class="sup-ap" title="OWL Annotation Property">ap</sup>
           </h3>
           <table>
@@ -3247,7 +4407,7 @@ td {
                 <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subPropertyOf" title="The subject is a subproperty of a property. Defined in The RDF Schema vocabulary (RDFS)">Sub Property Of</a>
               </th>
               <td>
-                <ul>
+                <ul class="pylodelitlist">
                   <li>
                     <span>
                       <a href="http://www.w3.org/2004/02/skos/core#closeMatch">has close match</a>
@@ -3266,7 +4426,7 @@ td {
           </table>
         </div>
         <div class="property entity" id="example">
-          <h3>example
+          <h3>Example
             <sup class="sup-ap" title="OWL Annotation Property">ap</sup>
           </h3>
           <table>
@@ -3313,10 +4473,10 @@ td {
             </tr>
             <tr>
               <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/superPropertyOf" title="Inverse of RDFS' subPropertyOf. Defined in Ontology Documentation Profile">Super Property Of</a>
+                <a class="hover_property" href="https://linked.data.gov.au/def/ontpub/superPropertyOf" title="Inverse of RDFS' subPropertyOf. Defined in Ontology Documentation Profile">Super Property Of</a>
               </th>
               <td>
-                <ul>
+                <ul class="pylodelitlist">
                   <li>
                     <span>
                       <a href="http://www.w3.org/2004/02/skos/core#closeMatch">has close match</a>
@@ -3386,7 +4546,7 @@ td {
             </tr>
             <tr>
               <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/superPropertyOf" title="Inverse of RDFS' subPropertyOf. Defined in Ontology Documentation Profile">Super Property Of</a>
+                <a class="hover_property" href="https://linked.data.gov.au/def/ontpub/superPropertyOf" title="Inverse of RDFS' subPropertyOf. Defined in Ontology Documentation Profile">Super Property Of</a>
               </th>
               <td>
                 <span>
@@ -3398,7 +4558,7 @@ td {
           </table>
         </div>
         <div class="property entity" id="prefLabel">
-          <h3>pref label
+          <h3>Pref Label
             <sup class="sup-ap" title="OWL Annotation Property">ap</sup>
           </h3>
           <table>
@@ -3456,7 +4616,7 @@ td {
             </tr>
             <tr>
               <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/superPropertyOf" title="Inverse of RDFS' subPropertyOf. Defined in Ontology Documentation Profile">Super Property Of</a>
+                <a class="hover_property" href="https://linked.data.gov.au/def/ontpub/superPropertyOf" title="Inverse of RDFS' subPropertyOf. Defined in Ontology Documentation Profile">Super Property Of</a>
               </th>
               <td>
                 <span>
@@ -3543,7 +4703,7 @@ td {
                 <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subPropertyOf" title="The subject is a subproperty of a property. Defined in The RDF Schema vocabulary (RDFS)">Sub Property Of</a>
               </th>
               <td>
-                <ul>
+                <ul class="pylodelitlist">
                   <li>
                     <span>
                       <a href="http://www.w3.org/2004/02/skos/core#closeMatch">has close match</a>
@@ -3599,7 +4759,7 @@ td {
                 <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subPropertyOf" title="The subject is a subproperty of a property. Defined in The RDF Schema vocabulary (RDFS)">Sub Property Of</a>
               </th>
               <td>
-                <ul>
+                <ul class="pylodelitlist">
                   <li>
                     <span>
                       <a href="http://www.w3.org/2004/02/skos/core#relatedMatch">has related match</a>
@@ -3693,10 +4853,10 @@ td {
             </tr>
             <tr>
               <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/superPropertyOf" title="Inverse of RDFS' subPropertyOf. Defined in Ontology Documentation Profile">Super Property Of</a>
+                <a class="hover_property" href="https://linked.data.gov.au/def/ontpub/superPropertyOf" title="Inverse of RDFS' subPropertyOf. Defined in Ontology Documentation Profile">Super Property Of</a>
               </th>
               <td>
-                <ul>
+                <ul class="pylodelitlist">
                   <li>
                     <span>
                       <a href="http://www.w3.org/2004/02/skos/core#exactMatch">has exact match</a>
@@ -3752,10 +4912,10 @@ td {
             </tr>
             <tr>
               <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/superPropertyOf" title="Inverse of RDFS' subPropertyOf. Defined in Ontology Documentation Profile">Super Property Of</a>
+                <a class="hover_property" href="https://linked.data.gov.au/def/ontpub/superPropertyOf" title="Inverse of RDFS' subPropertyOf. Defined in Ontology Documentation Profile">Super Property Of</a>
               </th>
               <td>
-                <ul>
+                <ul class="pylodelitlist">
                   <li>
                     <span>
                       <a href="http://www.w3.org/2004/02/skos/core#broadMatch">has broader match</a>
@@ -3804,6 +4964,10 @@ td {
           <dt id="doi">doi</dt>
           <dd>
             <code>https://doi.org/</code>
+          </dd>
+          <dt id="fabio">fabio</dt>
+          <dd>
+            <code>http://purl.org/spar/fabio/</code>
           </dd>
           <dt id="ns1">ns1</dt>
           <dd>
@@ -3868,7 +5032,7 @@ td {
           <span id="y">y</span>
           <span>LODE</span>
         </a>
-        <a href="https://github.com/rdflib/pyLODE/release/3.4.4" id="version">3.4.4</a>
+        <a href="https://github.com/rdflib/pyLODE/release/3.6.0" id="version">3.6.0</a>
         <span> with the </span>
         <a href="https://linked.data.gov.au/def/ontpub" id="profile">OntPub</a>
         <span>profile</span>
@@ -3886,177 +5050,225 @@ td {
           <h4>
             <a href="#classes">Classes</a>
           </h4>
+          <h5>
+            <a href="#class-hierarchy" style="margin-left:10px;">Class Hierarchy</a>
+          </h5>
+          <h5>
+            <a href="#class-definitions" style="margin-left:10px;">Class Definitions</a>
+          </h5>
           <ul class="second">
-            <li>
-              <a href="#human">human</a>
+            <li style="margin-left:10px;">
+              <a href="#AgentBasedMatching">agent-based matching process</a>
             </li>
-            <li>
-              <a href="#agent-basedmatchingprocess">agent-based matching process</a>
+            <li style="margin-left:10px;">
+              <a href="#BackgroundKnowledgeBasedMatching">background knowledge-based matching process</a>
             </li>
-            <li>
-              <a href="#backgroundknowledge-basedmatchingprocess">background knowledge-based matching process</a>
+            <li style="margin-left:10px;">
+              <a href="#BlankNormalisation">blank normalisation</a>
             </li>
-            <li>
-              <a href="#blanknormalisation">blank normalisation</a>
+            <li style="margin-left:10px;">
+              <a href="#Blocking">blocking</a>
             </li>
-            <li>
-              <a href="#blocking">blocking</a>
+            <li style="margin-left:10px;">
+              <a href="#BoundedPathMatching">bounded path matching</a>
             </li>
-            <li>
-              <a href="#boundedpathmatching">bounded path matching</a>
+            <li style="margin-left:10px;">
+              <a href="#BroadMatchTransitivityRule">broad match transitivity rule</a>
             </li>
-            <li>
-              <a href="#cardinalityfiltering">cardinality filtering</a>
+            <li style="margin-left:10px;">
+              <a href="#CardinalityFiltering">cardinality filtering</a>
             </li>
-            <li>
-              <a href="#casenormalization">case normalization</a>
+            <li style="margin-left:10px;">
+              <a href="#CaseNormalization">case normalization</a>
             </li>
-            <li>
-              <a href="#compositematchingprocess">composite matching process</a>
+            <li style="margin-left:10px;">
+              <a href="#ChainingRule">mapping chaining rule</a>
             </li>
-            <li>
-              <a href="#diacriticssuppression">diacritics suppression</a>
+            <li style="margin-left:10px;">
+              <a href="#CompositeMatching">composite matching process</a>
             </li>
-            <li>
-              <a href="#digitsuppression">digit suppression</a>
+            <li style="margin-left:10px;">
+              <a href="#DiacriticsSuppression">diacritics suppression</a>
             </li>
-            <li>
-              <a href="#editdistance">edit distance</a>
+            <li style="margin-left:10px;">
+              <a href="#DigitSuppression">digit suppression</a>
             </li>
-            <li>
-              <a href="#embedding-basedblocking">embedding-based blocking</a>
+            <li style="margin-left:10px;">
+              <a href="#EditDistance">edit distance</a>
             </li>
-            <li>
-              <a href="#embedding-basedmatchingprocess">embedding-based matching process</a>
+            <li style="margin-left:10px;">
+              <a href="#EmbeddingBasedBlocking">embedding-based blocking</a>
             </li>
-            <li>
-              <a href="#graphrepresentationlearning-basedmatchingprocess">graph representation learning-based matching process</a>
+            <li style="margin-left:10px;">
+              <a href="#EmbeddingBasedMatching">embedding-based matching process</a>
             </li>
-            <li>
-              <a href="#hammingdistance">hamming distance</a>
+            <li style="margin-left:10px;">
+              <a href="#EquivalentClassTransitivityRule">equivalent class transitivity rule</a>
             </li>
-            <li>
-              <a href="#instance-basedmatchingprocess">instance-based matching process</a>
+            <li style="margin-left:10px;">
+              <a href="#EquivalentIndividualTransitivityRule">equivalent individual transitivity rule</a>
             </li>
-            <li>
-              <a href="#LLM-basedmatchingprocess">LLM-based matching process</a>
+            <li style="margin-left:10px;">
+              <a href="#EquivalentPropertyTransitivityRule">equivalent property transitivity rule</a>
             </li>
-            <li>
-              <a href="#language-basedsimilaritymeasure">language-based similarity measure</a>
+            <li style="margin-left:10px;">
+              <a href="#ExactMatchTransitivityRule">exact match transitivity rule</a>
             </li>
-            <li>
-              <a href="#lemmatization">lemmatization</a>
+            <li style="margin-left:10px;">
+              <a href="#GraphRepresentationLearningBasedMatching">graph representation learning-based matching process</a>
             </li>
-            <li>
-              <a href="#levenshteindistance">levenshtein distance</a>
+            <li style="margin-left:10px;">
+              <a href="#HammingDistance">hamming distance</a>
             </li>
-            <li>
-              <a href="#lexicalmatchingprocess">lexical matching process</a>
+            <li style="margin-left:10px;">
+              <a href="#InferenceRule">mapping inference rule</a>
             </li>
-            <li>
-              <a href="#lexicalsimilaritythreshold-basedmatchingprocess">lexical similarity threshold-based matching process</a>
+            <li style="margin-left:10px;">
+              <a href="#InstanceBasedMatching">instance-based matching process</a>
             </li>
-            <li>
-              <a href="#linkstripping">link stripping</a>
+            <li style="margin-left:10px;">
+              <a href="#InversionRule">mapping inversion rule</a>
             </li>
-            <li>
-              <a href="#logicalconsistencyfiltering">logical consistency filtering</a>
+            <li style="margin-left:10px;">
+              <a href="#JournalArticle">journal article</a>
             </li>
-            <li>
-              <a href="#logicalreasoningmatchingprocess">logical reasoning matching process</a>
+            <li style="margin-left:10px;">
+              <a href="#LLMBasedMatching">LLM-based matching process</a>
             </li>
-            <li>
-              <a href="#machinelearning-basedmatchingprocess">machine learning-based matching process</a>
+            <li style="margin-left:10px;">
+              <a href="#LanguageBasedSimilarityMeasure">language-based similarity measure</a>
             </li>
-            <li>
-              <a href="#manualmappingcuration">manual mapping curation</a>
+            <li style="margin-left:10px;">
+              <a href="#Lemmatization">lemmatization</a>
             </li>
-            <li>
-              <a href="#mapping">mapping</a>
+            <li style="margin-left:10px;">
+              <a href="#LevenshteinEditDistance">levenshtein distance</a>
             </li>
-            <li>
-              <a href="#mappingactivity">mapping activity</a>
+            <li style="margin-left:10px;">
+              <a href="#LexicalMatching">lexical matching process</a>
             </li>
-            <li>
-              <a href="#mappingchaining-basedmatchingprocess">mapping chaining-based matching process</a>
+            <li style="margin-left:10px;">
+              <a href="#LexicalSimilarityThresholdMatching">lexical similarity threshold-based matching process</a>
             </li>
-            <li>
-              <a href="#mappinginversion-basedmatchingprocess">mapping inversion-based matching process</a>
+            <li style="margin-left:10px;">
+              <a href="#LinkStripping">link stripping</a>
             </li>
-            <li>
-              <a href="#mappingreview">mapping review</a>
+            <li style="margin-left:10px;">
+              <a href="#LogicalConsistencyFiltering">logical consistency filtering</a>
             </li>
-            <li>
-              <a href="#matchingprocess">matching process</a>
+            <li style="margin-left:10px;">
+              <a href="#LogicalReasoning">logical reasoning matching process</a>
             </li>
-            <li>
-              <a href="#matchingprocesspost-processing">matching process post-processing</a>
+            <li style="margin-left:10px;">
+              <a href="#MachineLearningBasedMatching">machine learning-based matching process</a>
             </li>
-            <li>
-              <a href="#matchingprocesspre-processing">matching process pre-processing</a>
+            <li style="margin-left:10px;">
+              <a href="#ManualMappingCuration">manual mapping curation</a>
             </li>
-            <li>
-              <a href="#normalization">normalization</a>
+            <li style="margin-left:10px;">
+              <a href="#Mapping">mapping</a>
             </li>
-            <li>
-              <a href="#punctuationelimination">punctuation elimination</a>
+            <li style="margin-left:10px;">
+              <a href="#MappingActivity">mapping activity</a>
             </li>
-            <li>
-              <a href="#regexremoval">regex removal</a>
+            <li style="margin-left:10px;">
+              <a href="#MappingChaining">mapping chaining-based matching process</a>
             </li>
-            <li>
-              <a href="#regexreplacement">regex replacement</a>
+            <li style="margin-left:10px;">
+              <a href="#MappingInversion">mapping inversion-based matching process</a>
             </li>
-            <li>
-              <a href="#semanticsimilaritythreshold-basedmatchingprocess">semantic similarity threshold-based matching process</a>
+            <li style="margin-left:10px;">
+              <a href="#MappingReview">mapping review</a>
             </li>
-            <li>
-              <a href="#similaritymeasure">similarity measure</a>
+            <li style="margin-left:10px;">
+              <a href="#Matching">matching process</a>
             </li>
-            <li>
-              <a href="#stablemarriagefiltering">stable marriage filtering</a>
+            <li style="margin-left:10px;">
+              <a href="#MatchingPostProcessing">matching process post-processing</a>
             </li>
-            <li>
-              <a href="#stemming">stemming</a>
+            <li style="margin-left:10px;">
+              <a href="#MatchingPreprocessing">matching process pre-processing</a>
             </li>
-            <li>
-              <a href="#stop-wordremoval">stop-word removal</a>
+            <li style="margin-left:10px;">
+              <a href="#MutationRule">mapping mutation rule</a>
             </li>
-            <li>
-              <a href="#string-basedsimilaritymeasure">string-based similarity measure</a>
+            <li style="margin-left:10px;">
+              <a href="#NCBITaxon_9606">human</a>
             </li>
-            <li>
-              <a href="#stringequality">string equality</a>
+            <li style="margin-left:10px;">
+              <a href="#NarrowMatchTransitivityRule">narrow match transitivity rule</a>
             </li>
-            <li>
-              <a href="#structuralmatchingprocess">structural matching process</a>
+            <li style="margin-left:10px;">
+              <a href="#Normalization">normalization</a>
             </li>
-            <li>
-              <a href="#substringsimilarity">substring similarity</a>
+            <li style="margin-left:10px;">
+              <a href="#PunctuationElemination">punctuation elimination</a>
             </li>
-            <li>
-              <a href="#substringtest">substring test</a>
+            <li style="margin-left:10px;">
+              <a href="#RegexRemoval">regex removal</a>
             </li>
-            <li>
-              <a href="#termextraction">term extraction</a>
+            <li style="margin-left:10px;">
+              <a href="#RegexReplacement">regex replacement</a>
             </li>
-            <li>
-              <a href="#thresholdfiltering">threshold filtering</a>
+            <li style="margin-left:10px;">
+              <a href="#SemanticSimilarityThresholdMatching">semantic similarity threshold-based matching process</a>
             </li>
-            <li>
-              <a href="#token-baseddistance">token-based distance</a>
+            <li style="margin-left:10px;">
+              <a href="#SimilarityMeasure">similarity measure</a>
             </li>
-            <li>
-              <a href="#tokenization">tokenization</a>
+            <li style="margin-left:10px;">
+              <a href="#StableMarriageFiltering">stable marriage filtering</a>
             </li>
-            <li>
-              <a href="#transformer-basedmatchingprocess">transformer-based matching process</a>
+            <li style="margin-left:10px;">
+              <a href="#Stemming">stemming</a>
             </li>
-            <li>
-              <a href="#unspecifiedmatchingprocess">unspecified matching process</a>
+            <li style="margin-left:10px;">
+              <a href="#StopWordRemoval">stop-word removal</a>
             </li>
-            <li>
-              <a href="#ngramsimilarity">ngram similarity</a>
+            <li style="margin-left:10px;">
+              <a href="#StringBasedSimilarityMeasure">string-based similarity measure</a>
+            </li>
+            <li style="margin-left:10px;">
+              <a href="#StringEquality">string equality</a>
+            </li>
+            <li style="margin-left:10px;">
+              <a href="#StructuralMatching">structural matching process</a>
+            </li>
+            <li style="margin-left:10px;">
+              <a href="#SubClassOfTransitivityRule">subclass transitivity rule</a>
+            </li>
+            <li style="margin-left:10px;">
+              <a href="#SubPropertyOfTransitivityRule">subproperty transitivity rule</a>
+            </li>
+            <li style="margin-left:10px;">
+              <a href="#SubstringSimilarity">substring similarity</a>
+            </li>
+            <li style="margin-left:10px;">
+              <a href="#SubstringTest">substring test</a>
+            </li>
+            <li style="margin-left:10px;">
+              <a href="#TermExtraction">term extraction</a>
+            </li>
+            <li style="margin-left:10px;">
+              <a href="#ThresholdFiltering">threshold filtering</a>
+            </li>
+            <li style="margin-left:10px;">
+              <a href="#TokenBasedDistance">token-based distance</a>
+            </li>
+            <li style="margin-left:10px;">
+              <a href="#Tokenization">tokenization</a>
+            </li>
+            <li style="margin-left:10px;">
+              <a href="#TransformerBasedMatching">transformer-based matching process</a>
+            </li>
+            <li style="margin-left:10px;">
+              <a href="#TransitivityRule">transitivity rule</a>
+            </li>
+            <li style="margin-left:10px;">
+              <a href="#UnspecifiedMatching">unspecified matching process</a>
+            </li>
+            <li style="margin-left:10px;">
+              <a href="#nGramSimilarity">ngram similarity</a>
             </li>
           </ul>
         </li>
@@ -4066,28 +5278,7 @@ td {
           </h4>
           <ul class="second">
             <li>
-              <a href="#hasontologyrootterm">has ontology root term</a>
-            </li>
-            <li>
-              <a href="#contributor">contributor</a>
-            </li>
-            <li>
-              <a href="#creator">creator</a>
-            </li>
-            <li>
-              <a href="#description">description</a>
-            </li>
-            <li>
-              <a href="#license">license</a>
-            </li>
-            <li>
-              <a href="#source">source</a>
-            </li>
-            <li>
-              <a href="#title">title</a>
-            </li>
-            <li>
-              <a href="#altLabel">alt label</a>
+              <a href="#altLabel">Alt Label</a>
             </li>
             <li>
               <a href="#broadmatch">broad match</a>
@@ -4096,25 +5287,10 @@ td {
               <a href="#closematch">close match</a>
             </li>
             <li>
-              <a href="#definition">definition</a>
+              <a href="#contributor">Contributor</a>
             </li>
             <li>
-              <a href="#exactmatch">exact match</a>
-            </li>
-            <li>
-              <a href="#example">example</a>
-            </li>
-            <li>
-              <a href="#mappingrelation">mapping relation</a>
-            </li>
-            <li>
-              <a href="#narrowmatch">narrow match</a>
-            </li>
-            <li>
-              <a href="#prefLabel">pref label</a>
-            </li>
-            <li>
-              <a href="#relatedmatch">related match</a>
+              <a href="#creator">Creator</a>
             </li>
             <li>
               <a href="#cross-speciesbroadmatch">cross-species broad match</a>
@@ -4129,10 +5305,46 @@ td {
               <a href="#cross-speciesnarrowmatch">cross-species narrow match</a>
             </li>
             <li>
+              <a href="#definition">Definition</a>
+            </li>
+            <li>
+              <a href="#description">Description</a>
+            </li>
+            <li>
+              <a href="#exactmatch">exact match</a>
+            </li>
+            <li>
+              <a href="#example">Example</a>
+            </li>
+            <li>
+              <a href="#hasontologyrootterm">has ontology root term</a>
+            </li>
+            <li>
               <a href="#isomorphicmatch">isomorphic match</a>
             </li>
             <li>
+              <a href="#license">License</a>
+            </li>
+            <li>
+              <a href="#mappingrelation">mapping relation</a>
+            </li>
+            <li>
+              <a href="#narrowmatch">narrow match</a>
+            </li>
+            <li>
               <a href="#non-isomorphicmatch">non-isomorphic match</a>
+            </li>
+            <li>
+              <a href="#prefLabel">Pref Label</a>
+            </li>
+            <li>
+              <a href="#relatedmatch">related match</a>
+            </li>
+            <li>
+              <a href="#source">Source</a>
+            </li>
+            <li>
+              <a href="#title">Title</a>
             </li>
           </ul>
         </li>
@@ -4152,6 +5364,9 @@ td {
             </li>
             <li>
               <a href="#doi">doi</a>
+            </li>
+            <li>
+              <a href="#fabio">fabio</a>
             </li>
             <li>
               <a href="#ns1">ns1</a>
