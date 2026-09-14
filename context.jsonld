@@ -1,6 +1,7 @@
 {
 	"@context": {
 		"obo": "http://purl.obolibrary.org/obo/",
+		"IAO": "http://purl.obolibrary.org/obo/IAO_",
 		"oboInOwl": "http://www.geneontology.org/formats/oboInOwl#",
 
 		"rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
