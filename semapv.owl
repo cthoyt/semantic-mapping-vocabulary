@@ -352,7 +352,7 @@
     <!-- https://w3id.org/semapv/vocab/BroadMatchTransitivityRule -->
 
     <owl:Class rdf:about="https://w3id.org/semapv/vocab/BroadMatchTransitivityRule">
-        <rdfs:subClassOf rdf:resource="https://w3id.org/semapv/vocab/TransitivityRule"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/semapv/vocab/HomogenousTransitivityRule"/>
         <dcterms:source rdf:resource="https://doi.org/10.1093/bioinformatics/btaf542"/>
         <skos:definition>An inference rule over the transitivity of skos:broadMatch such that (e₁, skos:broadMatch, e₂) and (e₂, skos:broadMatch, e₃) infer (e₁, skos:broadMatch, e₃)</skos:definition>
         <skos:example>Because skos:broadMatch is transitive, (kim.hochschulfaechersystematik:n032, skos:broadMatch, kim.hochschulfaechersystematik:n40) and (kim.hochschulfaechersystematik:n40, skos:broadMatch, kim.hochschulfaechersystematik:n4) infers (kim.hochschulfaechersystematik:n032, skos:broadMatch, kim.hochschulfaechersystematik:n4)</skos:example>
@@ -469,7 +469,7 @@
     <!-- https://w3id.org/semapv/vocab/EquivalentClassTransitivityRule -->
 
     <owl:Class rdf:about="https://w3id.org/semapv/vocab/EquivalentClassTransitivityRule">
-        <rdfs:subClassOf rdf:resource="https://w3id.org/semapv/vocab/TransitivityRule"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/semapv/vocab/HomogenousTransitivityRule"/>
         <dcterms:source rdf:resource="https://doi.org/10.1093/bioinformatics/btaf542"/>
         <skos:definition>An inference rule over the transitivity of owl:equivalentClass such that (e₁, owl:equivalentClass, e₂) and (e₂, owl:equivalentClass, e₃) infer (e₁, owl:equivalentClass, e₃)</skos:definition>
         <skos:prefLabel>equivalent class transitivity rule</skos:prefLabel>
@@ -480,7 +480,7 @@
     <!-- https://w3id.org/semapv/vocab/EquivalentIndividualTransitivityRule -->
 
     <owl:Class rdf:about="https://w3id.org/semapv/vocab/EquivalentIndividualTransitivityRule">
-        <rdfs:subClassOf rdf:resource="https://w3id.org/semapv/vocab/TransitivityRule"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/semapv/vocab/HomogenousTransitivityRule"/>
         <dcterms:source rdf:resource="https://doi.org/10.1093/bioinformatics/btaf542"/>
         <skos:definition>An inference rule over the transitivity of owl:sameAs such that (e₁, owl:sameAs, e₂) and (e₂, owl:sameAs, e₃) infer (e₁, owl:sameAs, e₃)</skos:definition>
         <skos:example>Because owl:sameAs is transitive, ror:04xfq0f34 owl:sameAs wikidata:Q273263 and wikidata:Q273263 owl:sameAs ringgold:9165 infers ror:04xfq0f34 owl:sameAs ringgold:9165</skos:example>
@@ -492,7 +492,7 @@
     <!-- https://w3id.org/semapv/vocab/EquivalentPropertyTransitivityRule -->
 
     <owl:Class rdf:about="https://w3id.org/semapv/vocab/EquivalentPropertyTransitivityRule">
-        <rdfs:subClassOf rdf:resource="https://w3id.org/semapv/vocab/TransitivityRule"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/semapv/vocab/HomogenousTransitivityRule"/>
         <dcterms:source rdf:resource="https://doi.org/10.1093/bioinformatics/btaf542"/>
         <skos:definition>An inference rule over the transitivity of owl:equivalentProperty such that (e₁, owl:equivalentProperty, e₂) and (e₂, owl:equivalentProperty, e₃) infer (e₁, owl:equivalentProperty, e₃)</skos:definition>
         <skos:prefLabel>equivalent property transitivity rule</skos:prefLabel>
@@ -503,7 +503,7 @@
     <!-- https://w3id.org/semapv/vocab/ExactMatchTransitivityRule -->
 
     <owl:Class rdf:about="https://w3id.org/semapv/vocab/ExactMatchTransitivityRule">
-        <rdfs:subClassOf rdf:resource="https://w3id.org/semapv/vocab/TransitivityRule"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/semapv/vocab/HomogenousTransitivityRule"/>
         <dcterms:source rdf:resource="https://doi.org/10.1093/bioinformatics/btaf542"/>
         <skos:definition>An inference rule over the transitivity of skos:exactMatch such that (e₁, skos:exactMatch, e₂) and (e₂, skos:exactMatch, e₃) infer (e₁, skos:exactMatch, e₃)</skos:definition>
         <skos:example>Because skos:exactMatch is transitive, mesh:C000089 skos:exactMatch CHEBI:28646 and CHEBI:28646 skos:exactMatch CAS:645-92-1 infers mesh:C000089 skos:exactMatch CAS:645-92-1</skos:example>
@@ -532,6 +532,26 @@
         <rdfs:subClassOf rdf:resource="https://w3id.org/semapv/vocab/StringBasedSimilarityMeasure"/>
         <dcterms:source rdf:resource="https://doi.org/10.1007/978-3-642-38721-0"/>
         <skos:prefLabel>hamming distance</skos:prefLabel>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/semapv/vocab/HeterogeneousTransitivityRule -->
+
+    <owl:Class rdf:about="https://w3id.org/semapv/vocab/HeterogeneousTransitivityRule">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/semapv/vocab/TransitivityRule"/>
+        <skos:definition>An transitivity rule where at least one of p₁, p₂, and p₃ are different</skos:definition>
+        <skos:prefLabel>heterogeneous transitivity rule</skos:prefLabel>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/semapv/vocab/HomogenousTransitivityRule -->
+
+    <owl:Class rdf:about="https://w3id.org/semapv/vocab/HomogenousTransitivityRule">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/semapv/vocab/TransitivityRule"/>
+        <skos:definition>An transitivity rule where p₁, p₂, and p₃ are all the same</skos:definition>
+        <skos:prefLabel>homogenous transitivity rule</skos:prefLabel>
     </owl:Class>
     
 
@@ -799,7 +819,7 @@
     <!-- https://w3id.org/semapv/vocab/NarrowMatchTransitivityRule -->
 
     <owl:Class rdf:about="https://w3id.org/semapv/vocab/NarrowMatchTransitivityRule">
-        <rdfs:subClassOf rdf:resource="https://w3id.org/semapv/vocab/TransitivityRule"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/semapv/vocab/HomogenousTransitivityRule"/>
         <dcterms:source rdf:resource="https://doi.org/10.1093/bioinformatics/btaf542"/>
         <skos:definition>An inference rule over the transitivity of skos:narrowMatch such that (e₁, skos:narrowMatch, e₂) and (e₂, skos:narrowMatch, e₃) infer (e₁, skos:narrowMatch, e₃)</skos:definition>
         <skos:example>Because skos:narrowMatch is transitive, (kim.hochschulfaechersystematik:n4, skos:narrowMatch, kim.hochschulfaechersystematik:n40) and (kim.hochschulfaechersystematik:n40, skos:narrowMatch, kim.hochschulfaechersystematik:n032) infers (kim.hochschulfaechersystematik:n4, skos:narrowMatch, kim.hochschulfaechersystematik:n032)</skos:example>
@@ -942,7 +962,7 @@
     <!-- https://w3id.org/semapv/vocab/SubClassOfTransitivityRule -->
 
     <owl:Class rdf:about="https://w3id.org/semapv/vocab/SubClassOfTransitivityRule">
-        <rdfs:subClassOf rdf:resource="https://w3id.org/semapv/vocab/TransitivityRule"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/semapv/vocab/HomogenousTransitivityRule"/>
         <dcterms:source rdf:resource="https://doi.org/10.1093/bioinformatics/btaf542"/>
         <skos:definition>An inference rule over the transitivity of rdfs:subClassOf such that (e₁, rdfs:subClassOf , e₂) and (e₂, rdfs:subClassOf , e₃) infer (e₁, rdfs:subClassOf , e₃)</skos:definition>
         <skos:example>Because rdfs:subClassOf is transitive (DOID:2934, rdfs:subClassOf, DOID:934) and (DOID:934, rdfs:subClassOf, DOID:0050117) infers (DOID:2934, rdfs:subClassOf, DOID:0050117)</skos:example>
@@ -954,7 +974,7 @@
     <!-- https://w3id.org/semapv/vocab/SubPropertyOfTransitivityRule -->
 
     <owl:Class rdf:about="https://w3id.org/semapv/vocab/SubPropertyOfTransitivityRule">
-        <rdfs:subClassOf rdf:resource="https://w3id.org/semapv/vocab/TransitivityRule"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/semapv/vocab/HomogenousTransitivityRule"/>
         <dcterms:source rdf:resource="https://doi.org/10.1093/bioinformatics/btaf542"/>
         <skos:definition>An inference rule over the transitivity of rdfs:subPropertyOf such that (e₁, rdfs:subPropertyOf , e₂) and (e₂, rdfs:subPropertyOf , e₃) infer (e₁, rdfs:subPropertyOf, e₃)</skos:definition>
         <skos:example>Because rdfs:subPropertyOf is transitive, (RO:0000092, rdfs:subPropertyOf, RO:0000052) and (RO:0000052, rdfs:subClassOf, RO:0002314) infers (RO:0000092, rdfs:subPropertyOf ,RO:0002314)</skos:example>
@@ -1041,7 +1061,7 @@
     <owl:Class rdf:about="https://w3id.org/semapv/vocab/TransitivityRule">
         <rdfs:subClassOf rdf:resource="https://w3id.org/semapv/vocab/ChainingRule"/>
         <dcterms:source rdf:resource="https://doi.org/10.1093/bioinformatics/btaf542"/>
-        <skos:definition>An inference rule over the transitivity of a predicate p such that (e₁, p₁, e₂) and (e₂, p₂, e₃) infer (e₁, p₃, e₃). A common transitivity rule is when p₁=p₂=p₃=skos:exactMatch.</skos:definition>
+        <skos:definition>An inference rule over the transitivity of a predicates p₁, p₂, and p₃ such that (e₁, p₁, e₂) and (e₂, p₂, e₃) infer (e₁, p₃, e₃). A common transitivity rule is when p₁=p₂=p₃=skos:exactMatch.</skos:definition>
         <skos:prefLabel>transitivity rule</skos:prefLabel>
     </owl:Class>
     
