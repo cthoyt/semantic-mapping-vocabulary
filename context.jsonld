@@ -12,6 +12,8 @@
 		"doi": "https://doi.org/",
 		"prov": "http://www.w3.org/ns/prov#",
 		"skos": "http://www.w3.org/2004/02/skos/core#",
+		"doi": "https://doi.org/",
+		"fabio": "http://purl.org/spar/fabio/",
 
 		"semapv": "https://w3id.org/semapv/vocab/"
 	}
